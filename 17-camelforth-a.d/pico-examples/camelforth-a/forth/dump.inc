@@ -1,7 +1,9 @@
 // dump.inc
 
-#undef AINSU_DUMP_EXTERN
+#ifndef AINSU_DUMP_EXTERN
 #define AINSU_DUMP_EXTERN
+// #undef AINSU_DUMP_EXTERN
+#endif
 
 /* Charley Shatttuck's rdumps() */
 
