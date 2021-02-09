@@ -50,6 +50,7 @@
 #include "cut.inc"              // string cutter utility, for long USB printf's
 
 extern unsigned int getKey(void);       // hardware-independent wrapper
+// extern int _pico_LED();
 
 /*
 #include <stdint.h>
@@ -120,6 +121,7 @@ void camelforth(void) {
     putchar('h');
     putchar(' ');
     // chopped_acm_write(print_string);
+    // _pico_LED(); // blocking
     while (1) {                 /* loop in case interpreter() ever terminates */
         interpreter();
     }

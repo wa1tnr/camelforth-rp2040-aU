@@ -1,3 +1,4 @@
+#define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - 09 Feb 2021 15:52:38 UTC      ");
 /****h* camelforth/forth.c
  * NAME
  *  forth.c
@@ -621,6 +622,11 @@ CODE(dots) {    /* print stack, for testing */
     while (p >= psp) { printf(" %8x", *p--); }
 }
 
+extern int _pico_LED(void);
+CODE(blink) { /* -- */
+    _pico_LED();
+}
+
 CODE(dump) {   /* adr n -- */
     unsigned char *p;
     unsigned int n, i;
@@ -729,6 +735,7 @@ PRIMITIVE(dothh);
 PRIMITIVE(dothhhh);
 PRIMITIVE(dots);
 PRIMITIVE(dump);
+PRIMITIVE(blink);
 PRIMITIVE(bye);
 
 /* USER VARIABLES */
@@ -1222,7 +1229,9 @@ THREAD(words) = { Fenter, Tlatest, Tfetch,
 
 /* MAIN ENTRY POINT */
 
-const char coldprompt[] = "\042CamelForth in C v0.1 - 14 Feb 2016 2021:aa";
+// const char coldprompt[] = "\103CamelForth in C v0.1 - 14 Feb 2016 - 09 Feb 2021 15:36:16 UTC      ";
+const char coldprompt[] = VERS_CFORTH
+//                             1234512345123451234512345123451234567890123456789012345678901234567
 
 THREAD(cold) = { Fenter, 
     Tuinit, Tu0, Tninit, Titod,     /* important initialization! */
@@ -1510,4 +1519,5 @@ HEADER(dothhhh, dothh, 0, "\005.HHHH");
 HEADER(dots, dothhhh, 0, "\002.S");
 HEADER(dump, dots, 0, "\004DUMP");
 HEADER(words, dump, 0, "\005WORDS");
-HEADER(cold, words, 0, "\004COLD");
+HEADER(blink, words, 0, "\005blink");
+HEADER(cold, blink, 0, "\004COLD");
