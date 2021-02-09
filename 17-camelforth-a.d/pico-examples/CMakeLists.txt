@@ -15,6 +15,6 @@ pico_sdk_init()
 include(example_auto_set_url.cmake)
 
 # Hardware-specific examples in subdirectories:
-add_subdirectory(cmake)
+# add_subdirectory(cmake)
 add_subdirectory(camelforth-a)
-add_subdirectory(system)
+# add_subdirectory(system)
