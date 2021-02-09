@@ -1,4 +1,4 @@
-#define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - Tue Feb  9 16:10:42 UTC 2021  ");
+#define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - Tue Feb  9 18:11:53 UTC 2021  ");
 /****h* camelforth/forth.c
  * NAME
  *  forth.c
@@ -610,13 +610,8 @@ CODE(dothhhh) {        /* temporary definition for testing */
 CODE(dots) {    /* print stack, for testing */
     unsigned int *p;
     p = &pstack[PSTACKSIZE-2];      /* deepest element on stack */
-    putchar(' ');
-    putchar('D');
-    putchar('e');
-    putchar('b');
-    putchar('u');
-    putchar('g');
-    putchar(' ');
+//  putchar(' '); //  putchar('D');
+//  Debug message removed 09 Feb 18:13z
     printf("\n%8x:", (unsigned int)p);
  // while (p >= psp) printf(" %8x", *p--); // crashes the interpreter - wa1tnr 10 Sep 2018
     while (p >= psp) { printf(" %8x", *p--); }
@@ -626,6 +621,13 @@ extern int _pico_LED(void);
 CODE(blink) { /* -- */
     _pico_LED();
 }
+
+#define AINSU_DUMP_EXTERN
+#ifdef AINSU_DUMP_EXTERN
+#include "dump.inc"
+#endif // #ifdef AINSU_DUMP_EXTERN
+
+#ifndef AINSU_DUMP_EXTERN
 
 CODE(dump) {   /* adr n -- */
     unsigned char *p;
@@ -637,6 +639,8 @@ CODE(dump) {   /* adr n -- */
         printf(" %02x", *p++);
     }
 }       
+
+#endif // #ifndef AINSU_DUMP_EXTERN
 
 CODE(bye) {
     run = 0;
