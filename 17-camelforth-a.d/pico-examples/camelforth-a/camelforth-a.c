@@ -21,7 +21,10 @@
 extern void interpreter(void);
 extern int _pico_LED(void);
 
+/*
+
 char ch;
+
 void _USB_read_tnr(void) {
     ch = getchar();
 
@@ -39,19 +42,24 @@ void _USB_read_tnr(void) {
     // putchar() on /dev/ttyACM0 - USB
     // putchar('X');
 }
+*/
 
+/*
 void tryme() {
     ch = 'Q';
     _USB_read_tnr();
 }
+*/
 
+/*
 void looper() {
 
     tryme();
 }
+*/
 
 int main() {
-    sleep_ms(9500);
+    sleep_ms(1800);
     uart_init(UART_ID, BAUD_RATE);
 
     gpio_set_function(UART_TX_PIN, GPIO_FUNC_UART);
@@ -59,28 +67,18 @@ int main() {
 
     stdio_init_all();
 
-    uart_putc_raw(UART_ID, 'A');
+    // uart_putc_raw(UART_ID, 'A');
 
-    uart_putc(UART_ID, 'B');
-    uart_putc(UART_ID, 'B');
-    uart_putc(UART_ID, 'B');
-    uart_putc(UART_ID, 'B');
-    uart_putc(UART_ID, 'B');
-    uart_putc(UART_ID, 'B');
-    uart_putc(UART_ID, 'B');
-    uart_putc(UART_ID, 'B');
-    uart_putc(UART_ID, 'B');
-    uart_putc(UART_ID, 'B');
-    uart_putc(UART_ID, 'B');
-    sleep_ms(19500);
-    uart_puts(UART_ID, " Hello, UART!\r\n");
-    uart_puts(UART_ID, " project codenamed camelForth-rp2 v0.0.0-b\r\n\r\n\r\n");
-    uart_puts(UART_ID, " 8 Feb BUILD env test nice keyboard mirroring UART and USB\r\n");
+    // uart_putc(UART_ID, 'B');
+    sleep_ms(800);
+    uart_puts(UART_ID, "\r\n\r\n   camelforth-rp2040-aU r0.1.2-pre-alpha\r\n\r\n");
+
+    uart_puts(UART_ID, "    9 Feb good production build. +dump +blink +UART +USB\r\n");
 
     while(1) {
-        // _pico_LED();
-        interpreter(); // camel forth
-        looper(); // called once and ran once ask asked ;)
+        // _pico_LED(); // test using GPIO hardware to blink Pi Pico onboard LED
+        interpreter(); // camelforth
+        // looper(); // called once and ran once ask asked ;)
     }
 }
 
