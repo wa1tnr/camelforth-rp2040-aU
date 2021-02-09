@@ -52,7 +52,8 @@ void dumpRAM() {
         if (print_string[0] > 0x7e || print_string[0] < ' ')
             print_string[0] = (uint32_t) '.';
         print_string[1] = '\0';
-        chopped_acm_write(print_string);
+        // chopped_acm_write(print_string);
+        printf("%s", print_string); // pretty good - no research done though 09 Feb 2021
     }
     psp--;
     psp[0] = p + 16;
