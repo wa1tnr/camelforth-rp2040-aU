@@ -1,11 +1,11 @@
-# Tue Feb  9 11:10:49 UTC 2021
-# camelforth-rp2040-aU   UNSTABLE   0.1.0-pre-alpha   Tue Feb  9 11:10:49 UTC 2021
+# Tue Feb  9 16:19:48 UTC 2021
+# camelforth-rp2040-aU   UNSTABLE   0.1.1-pre-alpha   Tue Feb  9 16:19:48 UTC 2021
 
-UNSTABLE version - new features such as LED blinking.
+UNSTABLE version - new feature: LED blinking.
 
 CamelForth in C, by Dr. Brad Rodriguez
 
-Reasonably well debugged - functional Forth interpreter 04:10 UTC Tue 09 Feb 2021
+Reasonably well debugged - functional Forth interpreter.
 
 Port: rp2040, Raspberry Pi Pico target board, February, 2021.
 
@@ -25,6 +25,8 @@ Forth interpreter for the
 RP2040 and Raspberry Pi Pico.
 
 UNSTABLE version.  Look for changes and improvements here.
+
+New feature: the blink word.  Use once per blink.
 
 Requires pico-sdk and is modeled on pico-examples.
 
