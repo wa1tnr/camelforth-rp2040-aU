@@ -1,0 +1,5 @@
+
+dot_s.fs does compile, but in this
+terminal, the line endings were not
+recognized, so it was tested manually.
+
