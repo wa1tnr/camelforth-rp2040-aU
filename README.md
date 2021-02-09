@@ -1,5 +1,6 @@
-# Tue Feb  9 16:19:48 UTC 2021
-# camelforth-rp2040-aU   UNSTABLE   0.1.1-pre-alpha   Tue Feb  9 16:19:48 UTC 2021
+# camelforth-rp2040-aU   UNSTABLE   0.1.0-pre-alpha   Tue Feb  9 16:26:59 UTC 2021
+
+Correction: never was a tag or a release - did not 'git tag -d <thistag>' as proper(?)
 
 UNSTABLE version - new feature: LED blinking.
 
