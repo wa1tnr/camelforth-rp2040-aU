@@ -1,4 +1,7 @@
-# camelforth-rp2040-a   0.1.1-pre-alpha   Tue Feb  9 04:13:56 UTC 2021
+# Tue Feb  9 11:10:49 UTC 2021
+# camelforth-rp2040-aU   UNSTABLE   0.1.0-pre-alpha   Tue Feb  9 11:10:49 UTC 2021
+
+UNSTABLE version - new features such as LED blinking.
 
 CamelForth in C, by Dr. Brad Rodriguez
 
@@ -6,7 +9,11 @@ Reasonably well debugged - functional Forth interpreter 04:10 UTC Tue 09 Feb 202
 
 Port: rp2040, Raspberry Pi Pico target board, February, 2021.
 
-# PARENT was rpi-pico-basics   0.1.0-pre-alpha   Mon Feb  8 03:48:42 UTC 2021
+# PARENT was camelforth-rp2040-a    0.1.1-pre-alpha   Tue Feb 9 05:28:31 UTC 2021
+
+commit 6cd03e97f38784f3f7fe8baf68416657af9469a7
+
+    CamelForth in C by Brad Rodriguez
 
 # About
 
@@ -16,6 +23,8 @@ A Forth in C by Dr Brad Rodriguez
 
 Forth interpreter for the
 RP2040 and Raspberry Pi Pico.
+
+UNSTABLE version.  Look for changes and improvements here.
 
 Requires pico-sdk and is modeled on pico-examples.
 
