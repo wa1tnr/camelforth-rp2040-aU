@@ -33,6 +33,7 @@ int main() {
     // uart_putc_raw(UART_ID, 'A');
 
     sleep_ms(800);
+    for (int i=3;i>0;i--) _pico_LED();
     uart_puts(UART_ID, "\r\n\r\n   camelforth-rp2040-aU r0.1.2-pre-alpha\r\n\r\n");
 
     uart_puts(UART_ID, "    9 Feb good production build. +dump +blink +UART +USB\r\n");
