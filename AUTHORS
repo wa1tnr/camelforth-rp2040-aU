@@ -1,0 +1,32 @@
+  CamelForth in C
+  copyright (c) 2016,2017 Bradford J. Rodriguez.
+
+  Commercial inquiries should be directed to the author at
+  115 First St., #105, Collingwood, Ontario L9Y 4W3 Canada
+  or via email to bj@camelforth.com
+
+  Wed Feb 10 03:53:02 UTC 2021 - RP2040 port.
+
+  SAMD21 and SAMD51 legacy notes, follow (reposted Feb 20201).
+
+  port to       RP2040: wa1tnr (2021)
+  port to ATSAMD51J19A: wa1tnr (2018)
+
+  Old notes follow (reposted Feb 2021).
+
+  Also:
+
+  Charley Shattuck's forth-like interpreter is always an
+  inspiration and code from it may be found here.
+
+  Adafruit, Atmel, Microchip, Arduino LLC.
+
+  Also:
+      answered Dec 3 '13 at 8:33
+      M Oehm
+      on StackExchange, for the root function found in
+      the source of 'cut.c' (to slice a string and print
+      successive parts of it, one at a time, thereby
+      allowing unbuffered output to function fairly
+      nicely.
+
