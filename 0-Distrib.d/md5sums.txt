@@ -1,3 +1,0 @@
-4b8a0187bf79c037d43fb8ea3562a006  samd21-08_mhz-aaa-00-.atzip
-fed224d01de34ad5d527525f97bcb2f6  samd51_usart_08_sep_aa.atzip
-6f442062a7bb91a2be5ee10e46557c29  samd51_usb_cdc_18_SEP_aa.atzip
