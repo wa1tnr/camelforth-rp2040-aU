@@ -1,0 +1,19 @@
+Bug notes ;)
+
+The bug returns - caught while idle in another session.
+
+So the 32 bit unsigned int wasn't the issue.
+
+Or was in addition to it.
+
+The interpreter seems to operate by setting a flag
+called 'run'.  No real guess as to when it gets set,
+but if it has nothing to print but prints anyway,
+that could be an issue
+
+(a running print with no input, so it prints the
+null that it 'has').
+
+Just don't know.
+
+10 Feb 01:57 UTC 2021
