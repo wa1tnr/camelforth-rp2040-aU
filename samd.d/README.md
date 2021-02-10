@@ -5,7 +5,7 @@ Wed Feb 10 03:53:02 UTC 2021
 
 Ported to RP2040 Raspberry Pi Pico target.
 
-SAMD21 and SAMD51 legacy notes, follow (reposted Feb 20201).
+SAMD21 and SAMD51 legacy notes, follow (reposted Feb 2021).
 
  - - -
 
