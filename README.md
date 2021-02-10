@@ -1,14 +1,16 @@
-# camelforth-rp2040-aU   UNSTABLE   0.1.2-pre-alpha   Tue Feb  9 16:35:45 UTC 2021
-
-Corrections made - decided a new unused tag was the only permissible option.
-
-(Who knew)
+# camelforth-rp2040-aU   UNSTABLE   0.1.3-pre-alpha   Wed Feb 10 04:08:51 UTC 2021
 
 UNSTABLE version - new feature: LED blinking.
 
 CamelForth in C, by Dr. Brad Rodriguez
 
 Reasonably well debugged - functional Forth interpreter.
+
+There is one bug where it crashes unexpectedly, after
+a decently long runtime.  maybe 'run' gets set by .. don't know.
+
+Seems to print endless nulls '@' but have not captured to
+log to verify that's what it is.
 
 Port: rp2040, Raspberry Pi Pico target board, February, 2021.
 
