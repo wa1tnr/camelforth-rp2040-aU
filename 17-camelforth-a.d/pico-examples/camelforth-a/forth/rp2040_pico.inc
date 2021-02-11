@@ -49,7 +49,8 @@
 #include "rp2040_pico_getkey_usb.inc"
 #include "cut.inc"              // string cutter utility, for long USB printf's
 
-extern unsigned int getKey(void);       // hardware-independent wrapper
+// extern unsigned int getKey(void);       // hardware-independent wrapper
+extern uint8_t getKey(void);       // hardware-independent wrapper
 // extern int _pico_LED();
 
 /*
