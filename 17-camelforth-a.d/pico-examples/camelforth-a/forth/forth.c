@@ -909,7 +909,8 @@ THREAD(spaces) = { Fenter, Tdup, Tqbranch, OFFSET(5), Tspace, Toneminus,
 #define BACKSPACE 0x7f      /* key returned for backspace */
 #define BACKUP  8           /* what to emit for backspace */
 #else
-#define NEWLINE 0x0d
+#define NEWLINE 0x0a // attempt 11 Feb 2021
+// #define NEWLINE 0x0d
 #define BACKSPACE 8         /* key returned for backspace */
 #define BACKUP  8           /* what to emit for backspace */
 #endif
