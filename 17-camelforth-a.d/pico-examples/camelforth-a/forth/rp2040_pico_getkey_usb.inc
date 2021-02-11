@@ -1,6 +1,7 @@
 #include "rp2040_pico.h"
 
-unsigned int getKey(void) {     // hardware-independent wrapper
+// unsigned int getKey(void) {     // hardware-independent wrapper
+uint8_t getKey(void) {     // hardware-independent wrapper
     // uint8_t ch_read = (uint32_t) 'c';
     uint8_t ch_read = (uint8_t) 'c';
     ch_read = getchar();
