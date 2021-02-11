@@ -1,4 +1,4 @@
-#define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - Thu Feb 11 04:47:36 UTC 2021  ");
+#define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - Thu Feb 11 21:24:02 UTC 2021  ");
 /****h* camelforth/forth.c
  * NAME
  *  forth.c
@@ -58,7 +58,9 @@ unsigned int pstack[PSTACKSIZE];    /* grows down from end */
 unsigned int rstack[RSTACKSIZE];    /* grows down from end */
 unsigned int *psp, *rsp;            /* stack pointers */
 void *ip;                           /* interpreter pointer */
-bool run;                           /* "run" flag */
+// bool run;                           /* "run" flag */
+// wild attempt at a bugfix:
+volatile bool run;                           /* "run" flag */
 
 unsigned int lstack[LSTACKSIZE];    /* grows down from end */
 unsigned int uservars[USERSIZE];
@@ -584,7 +586,8 @@ CODE(sequal) {  /* c-addr1 c-addr2 u -- n */
 /* TERMINAL I/O */
 
 CODE(key) {
-    *--psp = (unsigned int)getch();
+    // *--psp = (unsigned int)getch();
+    *--psp = (uint8_t)getch();
 }
 
 CODE(emit) {
