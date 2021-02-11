@@ -1,1 +1,1 @@
-f8bfda7c009144a8064367e7f027ddc2  ./camelforth-a.uf2
+6f04e9278cef55da869836823ff6f7ed  ./camelforth-a.uf2
