@@ -1,3 +1,27 @@
+results_debugging.txt
+
+This commit ran for an hour before '@@@' crashing the
+interpreter loop (if that's what's going on):
+
+ > commit 28370371ddbbfb9c3fcc251f23d710d60364b8e8
+ > Author: wa1tnr <wa1tnr@users.noreply.github.com>
+ > Date:   Fri Feb 12 19:18:12 2021 +0000
+
+A typical test is a call to COLD and a comment marking
+the time ( like this 20:09:04 ) and then forgetting
+about that picocom session and doing other work on
+the Linux desktop.  picocom is the chosen 'hyperterm'
+type program (microcom, minicom, seyon &c also apply,
+as does Serial Monitor in Arduino IDE, for example).
+
+Sometimes a longer USB 'extension' cable is used;
+other times, direct 3 foot USB A to micro-B cable
+is employed (the extension is used to more conveniently
+depower the RP2040 to access USB bootloader mode).
+
+$$
+
+
 ok COLD CamelForth in C v0.1 - 14 Feb 2016 - Fri Feb 12 03:30:02 UTC 2021  
 
 577c926164a5daa md5 of the .uf2:
@@ -6,3 +30,4 @@ ok COLD CamelForth in C v0.1 - 14 Feb 2016 - Fri Feb 12 03:30:02 UTC 2021
 
   Even after a -Wall flag to the compiler (code passes this test).
 
+END.
