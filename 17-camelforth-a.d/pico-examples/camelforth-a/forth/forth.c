@@ -1,4 +1,4 @@
-#define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - Thu Feb 11 21:24:02 UTC 2021  ");
+#define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - Fri Feb 12 02:20:20 UTC 2021  ");
 /****h* camelforth/forth.c
  * NAME
  *  forth.c
