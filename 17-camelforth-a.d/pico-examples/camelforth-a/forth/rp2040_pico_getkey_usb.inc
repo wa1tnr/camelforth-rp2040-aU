@@ -1,6 +1,23 @@
 #include "rp2040_pico.h"
 
+void escLSQ0(void) {
+    putchar('\033'); // esc
+    putchar('[');
+    putchar('0');
+}
+
 void error_null_from_getchar(void) {
+    escLSQ0();
+    putchar(';');
+    putchar('1');
+    putchar(';');
+    putchar('3');
+    putchar('2');
+    putchar(';');
+    putchar('4');
+    putchar('0');
+    putchar('m');
+
     putchar('\n');
     putchar('\r');
     putchar(' ');
@@ -14,6 +31,7 @@ void error_null_from_getchar(void) {
     putchar('r');
     putchar(' ');
     putchar(' ');
+    escLSQ0(); putchar('m');
 }
 
 // unsigned int getKey(void) {     // hardware-independent wrapper
