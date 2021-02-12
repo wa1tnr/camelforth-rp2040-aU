@@ -1,5 +1,10 @@
 results_debugging.txt
 
+Assume an error null arrives at interpreter and needs
+to be trapped prior.
+
+$$
+
 The 'accept' word was verified against upstream.
 It had (at one time long ago) been modified; but
 the version here seems intact wrt the original
