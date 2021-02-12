@@ -89,10 +89,23 @@ void putch_nomore(char c) {
 }
 */
 
+/* rescind at least for now Fri 12 Feb 2021 01:27:33 */
+/*
 void putch(char c) {
     // putchar('I');
     putchar(c);
     // putchar('J');
+}
+*/
+
+/* replace with a new version Fri 12 Feb 2021 01:27 33: */
+void putch(char c) {
+    char *p;
+    p = &c;
+    c = *p +0;
+    print_string[0] = c;
+    print_string[1] = '\0';
+    printf("%s", print_string);
 }
 
 int getquery(void) {
