@@ -1,5 +1,15 @@
 results_debugging.txt
 
+The 'accept' word was verified against upstream.
+It had (at one time long ago) been modified; but
+the version here seems intact wrt the original
+(no changes introduced, here) so that should not
+be a contributing factor to the '@@@' bug.
+
+Could use a double-check sometime. ;)
+
+$$
+
 This commit ran for an hour before '@@@' crashing the
 interpreter loop (if that's what's going on):
 
