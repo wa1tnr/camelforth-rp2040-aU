@@ -1,4 +1,6 @@
-#define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - Fri Feb 12 03:30:02 UTC 2021  ");
+#define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - Fri Feb 12 18:04:05 UTC 2021  ");
+// special attempt: make some pointerish things more robust by superstitiously using 'volatile' all over the place ;)
+// surprisingly, all these changes in this commit do compile cleanly.
 /****h* camelforth/forth.c
  * NAME
  *  forth.c
@@ -56,8 +58,10 @@
 
 unsigned int pstack[PSTACKSIZE];    /* grows down from end */
 unsigned int rstack[RSTACKSIZE];    /* grows down from end */
-unsigned int *psp, *rsp;            /* stack pointers */
-void *ip;                           /* interpreter pointer */
+// interpreter():
+//  psp rsp ip and run are from outside world and are candidates
+volatile unsigned int *psp, *rsp;            /* stack pointers */
+volatile void *ip;                           /* interpreter pointer */
 // bool run;                           /* "run" flag */
 // wild attempt at a bugfix:
 volatile bool run;                           /* "run" flag */
@@ -1250,6 +1254,11 @@ THREAD(cold) = { Fenter,
  * INNER INTERPRETER
  */
 
+// list of stuff to try 'volatile' with:
+/*
+    xt w x are 'inside jobs' and don't get touched
+    psp rsp ip and run are from outside world and are candidates
+*/
 void interpreter(void)
 {
     void (*xt)(void *);     /* pointer to code function */
