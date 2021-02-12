@@ -32,20 +32,51 @@ void error_null_from_getchar(void) {
     escLSQ0(); putchar('m');
 }
 
+/*
+ 71 #define printf(format,integer) \
+ 72     length_print_string = 0; \
+ 73     print_string[0] = (uint32_t) "\0"; \
+ 74     sprintf(print_string, format, integer); \
+ 75     length_print_string = strlen(print_string); \
+ 76         chopped_acm_write(print_string)
+*/
+
+#define ifchreadfoo() \
+    if ( \
+        ( ch_read == '\0' )   || \
+        ( ch_read == 0xef )   || \
+        ( ch_read == 0xbf )   || \
+        ( ch_read == 0xbd ) \
+       )
+
+
 // unsigned int getKey(void) {     // hardware-independent wrapper
 uint8_t getKey(void) {     // hardware-independent wrapper
     // uint8_t ch_read = (uint32_t) 'c';
     uint8_t ch_read = (uint8_t) 'c';
     ch_read = getchar();
-    if (ch_read == '\0') {
+
+    ifchreadfoo() {
+
+/*
+    if (
+        ( ch_read == '\0' )   ||
+        ( ch_read == 0xef )   ||
+        ( ch_read == 0xbf )   ||
+        ( ch_read == 0xbd )
+       ) {
+*/
+
         error_null_from_getchar();
         error_null_from_getchar();
         ch_read = getchar();
-        if (ch_read == '\0') {
+        // if (ch_read == '\0') {
+        ifchreadfoo() {
             putchar(' '); putchar('2'); putchar('2'); putchar(':'); putchar(' ');
             error_null_from_getchar();
             ch_read = getchar();
-            if (ch_read == '\0') {
+            // if (ch_read == '\0') {
+            ifchreadfoo() {
                 putchar(' '); putchar('3'); putchar('3'); putchar(':'); putchar(' ');
                 error_null_from_getchar();
                 while(1); // three strikes
