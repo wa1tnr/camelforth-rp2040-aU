@@ -1,0 +1,8 @@
+ok COLD CamelForth in C v0.1 - 14 Feb 2016 - Fri Feb 12 03:30:02 UTC 2021  
+
+577c926164a5daa md5 of the .uf2:
+
+  Still crashes. Takes a good long while, sometimes.
+
+  Even after a -Wall flag to the compiler (code passes this test).
+
