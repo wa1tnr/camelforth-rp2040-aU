@@ -14,6 +14,10 @@ pico_sdk_init()
 
 include(example_auto_set_url.cmake)
 
+if ( CMAKE_COMPILER_IS_GNUCC )
+    set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall -Wextra")
+endif()
+
 # Hardware-specific examples in subdirectories:
 # add_subdirectory(cmake)
 add_subdirectory(camelforth-a)
