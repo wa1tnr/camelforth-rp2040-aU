@@ -23,11 +23,9 @@ void error_null_from_getchar(void) {
     putchar(' ');
     putchar(' ');
     putchar('E');
-    putchar('R');
+    putchar('r');
     putchar('r');
     putchar('o');
-    putchar('o');
-    putchar('r');
     putchar('r');
     putchar(' ');
     putchar(' ');
@@ -39,8 +37,22 @@ uint8_t getKey(void) {     // hardware-independent wrapper
     // uint8_t ch_read = (uint32_t) 'c';
     uint8_t ch_read = (uint8_t) 'c';
     ch_read = getchar();
-    if (ch_read == '\0') { error_null_from_getchar(); }
-    error_null_from_getchar(); // testing only
+    if (ch_read == '\0') {
+        error_null_from_getchar();
+        error_null_from_getchar();
+        ch_read = getchar();
+        if (ch_read == '\0') {
+            putchar(' '); putchar('2'); putchar('2'); putchar(':'); putchar(' ');
+            error_null_from_getchar();
+            ch_read = getchar();
+            if (ch_read == '\0') {
+                putchar(' '); putchar('3'); putchar('3'); putchar(':'); putchar(' ');
+                error_null_from_getchar();
+                while(1); // three strikes
+            }
+        }
+    }
+    // error_null_from_getchar(); // testing only
     // uncomment for local echo, maybe:
     // putchar(ch_read);
     return ch_read;
