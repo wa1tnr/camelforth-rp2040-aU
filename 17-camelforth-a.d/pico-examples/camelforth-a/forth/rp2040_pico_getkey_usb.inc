@@ -86,6 +86,10 @@ void error_no_more_run(void) {
        )
 */
 
+/* in finger quotes only: */
+void usb_race_reinit(void) {
+    // statements
+}
 
 // unsigned int getKey(void) {     // hardware-independent wrapper
 uint8_t getKey(void) {     // hardware-independent wrapper
@@ -118,6 +122,7 @@ uint8_t getKey(void) {     // hardware-independent wrapper
                 error_null_from_getchar();
                 run = 0; // can this work?
                 error_no_more_run();
+                usb_race_reinit();
                 while(1); // three strikes
             }
         }
