@@ -32,6 +32,33 @@ void error_null_from_getchar(void) {
     escLSQ0(); putchar('m');
 }
 
+void error_no_more_run(void) {
+    // quit(); // does this exist?
+    escLSQ0();
+    putchar(';');
+    putchar('1');
+    putchar(';');
+    putchar('3');
+    putchar('1');
+    putchar(';');
+    putchar('4');
+    putchar('0');
+    putchar('m');
+
+    putchar('\n');
+    putchar('\r');
+    putchar(' ');
+    putchar(' ');
+    putchar('A');
+    putchar('B');
+    putchar('E');
+    putchar('N');
+    putchar('D');
+    putchar(' ');
+    putchar(' ');
+    escLSQ0(); putchar('m');
+}
+
 /*
  71 #define printf(format,integer) \
  72     length_print_string = 0; \
@@ -89,6 +116,8 @@ uint8_t getKey(void) {     // hardware-independent wrapper
             if_chread_bad_chars() {
                 putchar(' '); putchar('3'); putchar('3'); putchar(':'); putchar(' ');
                 error_null_from_getchar();
+                run = 0; // can this work?
+                error_no_more_run();
                 while(1); // three strikes
             }
         }
