@@ -41,13 +41,23 @@ void error_null_from_getchar(void) {
  76         chopped_acm_write(print_string)
 */
 
-#define ifchreadfoo() \
+// possibly a good capture - showed all 'FF' in the 'less' $PAGER linux
+
+// <FF><FF><FF> like that
+
+#define if_chread_bad_chars() \
     if ( \
         ( ch_read == '\0' )   || \
+        ( ch_read == 0xff )   || \
+       )
+/*
         ( ch_read == 0xef )   || \
         ( ch_read == 0xbf )   || \
+        ( ch_read == 0xfe )   || \
+        ( ch_read == 0xff )   || \
         ( ch_read == 0xbd ) \
        )
+*/
 
 
 // unsigned int getKey(void) {     // hardware-independent wrapper
@@ -56,7 +66,7 @@ uint8_t getKey(void) {     // hardware-independent wrapper
     uint8_t ch_read = (uint8_t) 'c';
     ch_read = getchar();
 
-    ifchreadfoo() {
+    if_chread_bad_chars() {
 
 /*
     if (
@@ -71,12 +81,12 @@ uint8_t getKey(void) {     // hardware-independent wrapper
         error_null_from_getchar();
         ch_read = getchar();
         // if (ch_read == '\0') {
-        ifchreadfoo() {
+        if_chread_bad_chars() {
             putchar(' '); putchar('2'); putchar('2'); putchar(':'); putchar(' ');
             error_null_from_getchar();
             ch_read = getchar();
             // if (ch_read == '\0') {
-            ifchreadfoo() {
+            if_chread_bad_chars() {
                 putchar(' '); putchar('3'); putchar('3'); putchar(':'); putchar(' ');
                 error_null_from_getchar();
                 while(1); // three strikes
