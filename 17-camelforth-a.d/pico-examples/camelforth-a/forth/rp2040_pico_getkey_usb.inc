@@ -1,5 +1,25 @@
 #include "rp2040_pico.h"
 
+/*
+
+bool tud_init (void)
+
+   found in:
+
+   pico-sdk/lib/tinyusb/src/device
+
+i.e.
+
+ $ cat ./pico-sdk/lib/tinyusb/src/device/usbd.h | egrep init
+
+   bool tud_init (void);
+
+*/
+
+// possible entry point to reset only usb support:
+
+extern bool tud_init (void);
+
 void escLSQ0(void) {
     putchar('\033'); // esc
     putchar('[');
@@ -86,9 +106,16 @@ void error_no_more_run(void) {
        )
 */
 
+// extern tusb_init();
+
 /* in finger quotes only: */
+// i.e. not a race condition per se, possibly.
 void usb_race_reinit(void) {
-    // statements
+    // extern bool tud_init (void);
+    bool tud_is_init = false ;
+    tud_is_init = tud_init();
+    if (tud_init()) { run = 1; } // now really wild guessin
+    /* the idea: let the human re-init tusb under the compromised interpreter loop paradigm */
 }
 
 // unsigned int getKey(void) {     // hardware-independent wrapper
@@ -123,7 +150,9 @@ uint8_t getKey(void) {     // hardware-independent wrapper
                 run = 0; // can this work?
                 error_no_more_run();
                 usb_race_reinit();
-                while(1); // three strikes
+                ch_read = '\040' ; // harmless space char
+                return ch_read; // questionable return path
+                /// while(1); // three strikes
             }
         }
     }
