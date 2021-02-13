@@ -45,10 +45,10 @@ void error_null_from_getchar(void) {
 
 // <FF><FF><FF> like that
 
-#define if_chread_bad_chars()    \
-    if (                         \
-        ( ch_read == '\0' )   || \
-        ( ch_read == 0xff )      \
+#define if_chread_bad_chars() \
+    if ( \
+        ( ch_read == '\0' ) || \
+        ( ch_read == 0xff ) \
        )
 /*
         ( ch_read == 0xef )   || \
