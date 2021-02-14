@@ -8,55 +8,29 @@ void escLSQ0(void) {
 }
 
 void error_null_from_getchar(void) {
-    escLSQ0();
-    putchar(';');
-    putchar('1');
-    putchar(';');
-    putchar('3');
-    putchar('2');
-    putchar(';');
-    putchar('4');
-    putchar('0');
-    putchar('m');
+    escLSQ0(); putchar(';');
+    putchar('1'); putchar(';');
+    putchar('3'); putchar('2'); putchar(';');
+    putchar('4'); putchar('0'); putchar('m');
 
-    putchar('\n');
-    putchar('\r');
-    putchar(' ');
-    putchar(' ');
-    putchar('E');
-    putchar('r');
-    putchar('r');
-    putchar('o');
-    putchar('r');
-    putchar(' ');
-    putchar(' ');
+    putchar('\n'); putchar('\r');
+    putchar(' '); putchar(' ');
+    putchar('E'); putchar('r'); putchar('r'); putchar('o'); putchar('r');
+    putchar(' '); putchar(' ');
     escLSQ0(); putchar('m');
 }
 
 void error_no_more_run(void) {
     // watchdog_enable(100, 0);
-    escLSQ0();
-    putchar(';');
-    putchar('1');
-    putchar(';');
-    putchar('3');
-    putchar('1');
-    putchar(';');
-    putchar('4');
-    putchar('0');
-    putchar('m');
+    escLSQ0(); putchar(';');
+    putchar('1'); putchar(';');
+    putchar('3'); putchar('1'); putchar(';');
+    putchar('4'); putchar('0'); putchar('m');
 
-    putchar('\n');
-    putchar('\r');
-    putchar(' ');
-    putchar(' ');
-    putchar('A');
-    putchar('B');
-    putchar('E');
-    putchar('N');
-    putchar('D');
-    putchar(' ');
-    putchar(' ');
+    putchar('\n'); putchar('\r');
+    putchar(' '); putchar(' ');
+    putchar('A'); putchar('B'); putchar('E'); putchar('N'); putchar('D');
+    putchar(' '); putchar(' ');
     escLSQ0(); putchar('m');
 }
 
