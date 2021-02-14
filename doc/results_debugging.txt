@@ -1,5 +1,67 @@
 results_debugging.txt
 
+Sun Feb 14 00:25:37 UTC 2021
+
+Very interesting result just now:
+
+A second USB initialization (performed as in the
+experimental code) ends the program, but not immediately.
+
+The extra UART0 connection proved to give extra system
+state information that was unavailable on the primary
+USB connection to the target - nice extra information, there.
+
+The present (experimental variant) program:
+
+54e46957be612bbf86d0d4303139c00c  camelforth-a.uf2
+
+USB0 (cp2104 connection to UART0):
+
+ok COLD CamelForth in C v0.1 - 14 Feb 2016 - Sat Feb 13 22:39:29 UTC 2021
+ok ( waiting for abend now at 23:06:37 )
+ok .s <4> -63 -62 -61 1006A0D0
+ok
+  Error
+  Error   22:
+  Error   33:
+  Error
+  ABEND
+  Error
+  Error   22:
+  Error   33:
+  Error
+  ABEND
+  Error
+  Error   22:
+  Error   33:
+  Error
+  ABEND
+  Error
+  Error   22:
+  Error   33:
+  Error
+  ABEND
+*** PANIC ***
+
+No spinlocks are available
+
+The ACM0 connection was similar, but with fewer ABENDs:
+
+ok COLD CamelForth in C v0.1 - 14 Feb 2016 - Sat Feb 13 22:39:29 UTC 2021
+ok ( waiting for abend now at 23:06:37 )
+ok .s <4> -63 -62 -61 1006A0D0
+ok
+  Error
+  Error   22:
+  Error   33:
+  Error
+  ABEND
+FATAL: read zero bytes from port
+term_exitfunc: reset failed for dev UNKNOWN: Input/output error
+ linux $ # prompt returns to system from 'picocom' tty program in Linux
+
+$$
+
 Assume an error null arrives at interpreter and needs
 to be trapped prior.
 
@@ -37,7 +99,7 @@ depower the RP2040 to access USB bootloader mode).
 $$
 
 
-ok COLD CamelForth in C v0.1 - 14 Feb 2016 - Fri Feb 12 03:30:02 UTC 2021  
+ok COLD CamelForth in C v0.1 - 14 Feb 2016 - Fri Feb 12 03:30:02 UTC 2021
 
 577c926164a5daa md5 of the .uf2:
 
