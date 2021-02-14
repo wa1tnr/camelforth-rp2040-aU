@@ -1,5 +1,5 @@
 #include "rp2040_pico.h"
-#include "hardware/watchdog.h"
+// #include "hardware/watchdog.h"
 
 /*
 
@@ -54,7 +54,7 @@ void error_null_from_getchar(void) {
 }
 
 void error_no_more_run(void) {
-    watchdog_enable(100, 0);
+    // watchdog_enable(100, 0);
     escLSQ0();
     putchar(';');
     putchar('1');
@@ -151,7 +151,7 @@ uint8_t getKey(void) {     // hardware-independent wrapper
                     ch_read = getchar();
                     // while this loops past 100 ms the watchdog will expire
                 } while (( ch_read == '\0' ) || ( ch_read == 0xff ));
-                watchdog_update(); // if the bad chars abate
+                // watchdog_update(); // if the bad chars abate
 
                 // expected: an escape to a good instance of keyboard read,
                     //  from the 'do .. while' loop.
