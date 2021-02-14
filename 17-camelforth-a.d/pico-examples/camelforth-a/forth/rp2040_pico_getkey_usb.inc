@@ -18,7 +18,7 @@ i.e.
 
 // possible entry point to reset only usb support:
 
-extern bool tud_init (void);
+// extern bool tud_init (void);
 
 void escLSQ0(void) {
     putchar('\033'); // esc
@@ -92,6 +92,7 @@ void error_no_more_run(void) {
 
 // <FF><FF><FF> like that
 
+
 #define if_chread_bad_chars() \
     if ( \
         ( ch_read == '\0' ) || \
@@ -110,13 +111,15 @@ void error_no_more_run(void) {
 
 /* in finger quotes only: */
 // i.e. not a race condition per se, possibly.
+/*
 void usb_race_reinit(void) {
     // extern bool tud_init (void);
     bool tud_is_init = false ;
     tud_is_init = tud_init();
     if (tud_init()) { run = 1; } // now really wild guessin
-    /* the idea: let the human re-init tusb under the compromised interpreter loop paradigm */
 }
+*/
+    /* the idea: let the human re-init tusb under the compromised interpreter loop paradigm */
 
 // unsigned int getKey(void) {     // hardware-independent wrapper
 uint8_t getKey(void) {     // hardware-independent wrapper
@@ -125,16 +128,6 @@ uint8_t getKey(void) {     // hardware-independent wrapper
     ch_read = getchar();
 
     if_chread_bad_chars() {
-
-/*
-    if (
-        ( ch_read == '\0' )   ||
-        ( ch_read == 0xef )   ||
-        ( ch_read == 0xbf )   ||
-        ( ch_read == 0xbd )
-       ) {
-*/
-
         error_null_from_getchar();
         error_null_from_getchar();
         ch_read = getchar();
@@ -149,10 +142,23 @@ uint8_t getKey(void) {     // hardware-independent wrapper
                 error_null_from_getchar();
                 run = 0; // can this work?
                 error_no_more_run();
-                usb_race_reinit();
-                ch_read = '\040' ; // harmless space char
-                return ch_read; // questionable return path
-                /// while(1); // three strikes
+                // bool is_badchar = false;
+                // is_badchar = true;
+
+                // some good chars may arrive in the stream of 0xff bad chars
+                do {
+                    ch_read = getchar();
+                } while (( ch_read == '\0' ) || ( ch_read == 0xff ));
+
+                // expected: an escape to a good instance of keyboard read,
+                    //  from the 'do .. while' loop.
+
+                run = 1; // not sure manipulation of 'run' does anything useful here
+
+                // usb_race_reinit();
+                // ch_read = '\040' ; // harmless space char
+                // return ch_read; // questionable return path
+                // while(1); // three strikes
             }
         }
     }
