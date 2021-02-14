@@ -1,5 +1,18 @@
 results_debugging.txt
 
+Sun Feb 14 17:58:22 UTC 2021
+
+ABEND now normalized - can continue past it.
+
+Once ABEND is reached, system needs a power cycle to
+regain true characteristics, but in the meantime, is
+useful to interrogate its current state.
+
+Useful as a daily driver, considering the options
+presently available.  commit to main soon.
+
+$$
+
 Sun Feb 14 07:08:06 UTC 2021
 
 The watchdog seemed to do what it is supposed to do.
