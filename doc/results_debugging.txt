@@ -1,5 +1,26 @@
 results_debugging.txt
 
+Sun Feb 14 22:56:58 UTC 2021
+
+Successful four hour trial - three of them after the
+ABEND appears.  CamelForth's interpreter behaves just
+the same as if the ABEND had never occured.
+
+In the background, the USB subsystem appears to be
+constantly feeding a string of 0xff chars to 'getchar()'
+where the ABEND is trapped.
+
+Presumption is that is ongoing and never ends, once it
+has begun.  So there is a large internal state difference,
+since all those junk 0xff chars are being produced, then
+ignored.
+
+That's where things stand now - don't know what to do
+about it, other than wait for further understanding
+to arise. ;)
+
+$$
+
 Sun Feb 14 17:58:22 UTC 2021
 
 ABEND now normalized - can continue past it.
