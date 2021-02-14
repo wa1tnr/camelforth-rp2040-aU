@@ -1,5 +1,18 @@
 results_debugging.txt
 
+Sun Feb 14 03:19:10 UTC 2021
+
+So, results are in - regains access to interpreter() and
+marks the session as ABEND with every keystroke, as
+(approximately) anticipated/designed.
+
+This allows even a COLD reset, or probably a good examination
+of the existing stack (the .S word).
+
+Need to run it again to see just what's corrupted, but it
+looked like it was fine.
+
+
 Sun Feb 14 00:25:37 UTC 2021
 
 Very interesting result just now:
