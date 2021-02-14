@@ -45,44 +45,41 @@ void error_no_more_run(void) {
         ( ch_read == 0xff ) \
        )
 
+
+bool abend_tripped = false;
+
 // unsigned int getKey(void) {     // hardware-independent wrapper
 uint8_t getKey(void) {     // hardware-independent wrapper
-    // uint8_t ch_read = (uint32_t) 'c';
     uint8_t ch_read = (uint8_t) 'c';
-    ch_read = getchar();
 
-    if_chread_bad_chars() {
-        error_null_from_getchar();
-        error_null_from_getchar();
+    if ( ! abend_tripped ) {
         ch_read = getchar();
         if_chread_bad_chars() {
-            putchar(' '); putchar('2'); putchar('2'); putchar(':'); putchar(' ');
             error_null_from_getchar();
             ch_read = getchar();
             if_chread_bad_chars() {
-                putchar(' '); putchar('3'); putchar('3'); putchar(':'); putchar(' ');
+                putchar(' '); putchar('2'); putchar('2'); putchar(':');
                 error_null_from_getchar();
-                run = 0; // can this work?
-                error_no_more_run();
-
-                // some good chars may arrive in the stream of 0xff bad chars
-                do {
-                    ch_read = getchar();
-                } while (( ch_read == '\0' ) || ( ch_read == 0xff ));
-
-                // expected: an escape to a good instance of keyboard read,
-                    //  from the 'do .. while' loop.
-
-                run = 1; // not sure manipulation of 'run' does anything useful here
-
-                // ch_read = '\040' ; // harmless space char
-                // return ch_read; // questionable return path
-                // while(1); // three strikes
+                ch_read = getchar();
+                if_chread_bad_chars() {
+                    putchar(' '); putchar('3'); putchar('3'); putchar(':');
+                    error_null_from_getchar();
+                    // run = 0; // can this work?
+                    error_no_more_run();
+                    abend_tripped = true ;
+                    do {
+                        ch_read = getchar(); // some good chars may arrive in the stream of 0xff bad chars
+                    } while (( ch_read == '\0' ) || ( ch_read == 0xff ));
+                }
             }
         }
     }
-    // uncomment for local echo, maybe:
-    // putchar(ch_read);
+    else { // alright already it's an abend don't keep announcing it
+        do {
+            ch_read = getchar();
+        } while (( ch_read == '\0' ) || ( ch_read == 0xff ));
+    }
+
     return ch_read;
 }
 void queryKey(void) {
