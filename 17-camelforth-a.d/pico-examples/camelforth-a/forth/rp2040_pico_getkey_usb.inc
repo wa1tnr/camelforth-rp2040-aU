@@ -34,15 +34,6 @@ void error_no_more_run(void) {
     escLSQ0(); putchar('m');
 }
 
-/*
- 71 #define printf(format,integer) \
- 72     length_print_string = 0; \
- 73     print_string[0] = (uint32_t) "\0"; \
- 74     sprintf(print_string, format, integer); \
- 75     length_print_string = strlen(print_string); \
- 76         chopped_acm_write(print_string)
-*/
-
 // possibly a good capture - showed all 'FF' in the 'less' $PAGER linux
 
 // <FF><FF><FF> like that
