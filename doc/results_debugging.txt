@@ -1,5 +1,31 @@
 results_debugging.txt
 
+Sun Feb 14 07:08:06 UTC 2021
+
+The watchdog seemed to do what it is supposed to do.
+Apparently utilized 'correctly' for this limited use
+case.
+
+In future, probably make this a word in forth, such
+as 'wdreset' or similar, to provide a reset to the
+hardware as a forth word.
+
+Resetting via watchdog did not restore ACM0 access
+to the USB port (which quit to system prompt).
+
+UART0 stayed active and showed two extra green Error
+messages, no second red ABEND iirc, and was idling
+(maybe).  Hard to tell as all keyboard interaction
+became impossible (ACM0 no longer passing traffic).
+
+Will probably revert to most recent solution: have
+it say ABEND after every keystroke, as those are
+interleaved with many (many) 0xFF returns from
+(I think it's called) getchar(); after more than a
+half hour of normal activity (idling usually).
+
+$$
+
 Sun Feb 14 03:19:10 UTC 2021
 
 So, results are in - regains access to interpreter() and
