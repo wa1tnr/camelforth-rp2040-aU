@@ -1,26 +1,6 @@
 #include "rp2040_pico.h"
 // #include "hardware/watchdog.h"
 
-/*
-
-bool tud_init (void)
-
-   found in:
-
-   pico-sdk/lib/tinyusb/src/device
-
-i.e.
-
- $ cat ./pico-sdk/lib/tinyusb/src/device/usbd.h | egrep init
-
-   bool tud_init (void);
-
-*/
-
-// possible entry point to reset only usb support:
-
-// extern bool tud_init (void);
-
 void escLSQ0(void) {
     putchar('\033'); // esc
     putchar('[');
