@@ -45,6 +45,10 @@ void error_no_more_run(void) {
         ( ch_read == 0xff ) \
        )
 
+#define blocking_getchar() \
+    do { \
+        ch_read = getchar_timeout_us(1000); \
+    } while (ch_read == '\0')
 
 bool abend_tripped = false;
 
@@ -53,17 +57,24 @@ uint8_t getKey(void) {     // hardware-independent wrapper
     uint8_t ch_read = (uint8_t) 'c';
 
     if ( ! abend_tripped ) {
+
         // ch_read = getchar();
-        ch_read = getchar_timeout_us(1000);
+        blocking_getchar();
+        // do {
+            // ch_read = getchar_timeout_us(1000);
+        // } while ch_read == '\0';
+
         if_chread_bad_chars() {
             error_null_from_getchar();
             // ch_read = getchar();
-            ch_read = getchar_timeout_us(1000);
+            blocking_getchar();
+            // ch_read = getchar_timeout_us(1000);
             if_chread_bad_chars() {
                 putchar(' '); putchar('2'); putchar('2'); putchar(':');
                 error_null_from_getchar();
                 // ch_read = getchar();
-                ch_read = getchar_timeout_us(1000);
+                blocking_getchar();
+                // ch_read = getchar_timeout_us(1000);
                 if_chread_bad_chars() {
                     putchar(' '); putchar('3'); putchar('3'); putchar(':');
                     error_null_from_getchar();
@@ -72,7 +83,8 @@ uint8_t getKey(void) {     // hardware-independent wrapper
                     abend_tripped = true ;
                     do {
                         // ch_read = getchar(); // some good chars may arrive in the stream of 0xff bad chars
-                        ch_read = getchar_timeout_us(1000);
+                        // ch_read = getchar_timeout_us(1000);
+                        blocking_getchar();
                     } while (( ch_read == '\0' ) || ( ch_read == 0xff ));
                 }
             }
@@ -80,7 +92,8 @@ uint8_t getKey(void) {     // hardware-independent wrapper
     }
     else { // alright already it's an abend don't keep announcing it
         do {
-            ch_read = getchar_timeout_us(1000);
+            // ch_read = getchar_timeout_us(1000);
+            blocking_getchar();
         } while (( ch_read == '\0' ) || ( ch_read == 0xff ));
     }
 
