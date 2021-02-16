@@ -48,7 +48,7 @@ void error_no_more_run(void) {
 #define blocking_getchar() \
     do { \
         ch_read = getchar_timeout_us(1000); \
-    } while (ch_read == '\0')
+    } while ((ch_read == '\0') || (ch_read == 0xff))
 
 bool abend_tripped = false;
 
