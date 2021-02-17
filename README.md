@@ -1,18 +1,24 @@
-# camelforth-rp2040-aU   UNSTABLE   0.1.3-pre-alpha   Wed Feb 10 04:08:51 UTC 2021
-
-UNSTABLE version - new feature: LED blinking.
+# camelforth-rp2040-aU   UNSTABLE   0.1.4-pre-alpha   Tue Feb 16 15:34:07 UTC 2021
 
 CamelForth in C, by Dr. Brad Rodriguez
 
+UNSTABLE version
+
+ new feature: no-error getKey()
+
+     improved: rp2040_pico_getkey_usb.inc
+
+
 Reasonably well debugged - functional Forth interpreter.
 
-There is one bug where it crashes unexpectedly, after
-a decently long runtime.  maybe 'run' gets set by .. don't know.
-
-Seems to print endless nulls '@' but have not captured to
-log to verify that's what it is.
+There was one bug where it crashes unexpectedly, after
+a decently long runtime.  'getchar()' in the upstream
+pico-sdk now has a bug report filed.
 
 Port: rp2040, Raspberry Pi Pico target board, February, 2021.
+
+older entries in this README.md, follows (from prior to 17 Feb Wed 16:29 UTC).
+
 
 # PARENT was camelforth-rp2040-a    0.1.1-pre-alpha   Tue Feb 9 05:28:31 UTC 2021
 
