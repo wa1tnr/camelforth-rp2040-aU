@@ -1,5 +1,16 @@
 results_debugging.txt
 
+CamelForth in C v0.1 - 14 Feb 2016 - Tue Feb 16 15:34:07 UTC 2021
+
+built: Wed Feb 17 16:04:54 UTC 2021 (or within the hour)
+
+Very good overnight result - even with computer asleep, the
+USB port kept active power and when the computer awoke the
+next day, the target pico board still looked the same, with
+the same stack elements present.
+
+Good build.
+
 Sun Feb 14 22:56:58 UTC 2021
 
 Successful four hour trial - three of them after the
