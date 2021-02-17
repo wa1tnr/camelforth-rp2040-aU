@@ -1,0 +1,215 @@
+CamelForth in C v0.1 - 14 Feb 2016 - Tue Feb 16 15:34:07 UTC 2021
+
+Scanning dependencies of target bs2_default
+[  1%] Building ASM object pico-sdk/src/rp2_common/boot_stage2/CMakeFiles/bs2_default.dir/boot2_w25q080.S.obj
+[  1%] Linking ASM executable bs2_default.elf
+[  1%] Built target bs2_default
+Scanning dependencies of target bs2_default_padded_checksummed_asm
+[  2%] Generating bs2_default.bin
+[  2%] Generating bs2_default_padded_checksummed.S
+[  2%] Built target bs2_default_padded_checksummed_asm
+Scanning dependencies of target pico-LED
+[  3%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/pico-LED.c.obj
+[  3%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.obj
+[  4%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+[  5%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
+[  5%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+[  6%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_platform/platform.c.obj
+[  6%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj
+[  7%] Building ASM object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_divider/divider.S.obj
+[  7%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/common/pico_time/time.c.obj
+[  8%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/common/pico_time/timeout_helper.c.obj
+[  9%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+[  9%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/common/pico_sync/sem.c.obj
+[ 10%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/common/pico_sync/lock_core.c.obj
+[ 10%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/common/pico_sync/mutex.c.obj
+[ 11%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/common/pico_sync/critical_section.c.obj
+[ 11%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/common/pico_util/datetime.c.obj
+[ 12%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/common/pico_util/pheap.c.obj
+[ 13%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/common/pico_util/queue.c.obj
+[ 13%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+[ 14%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+[ 14%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
+[ 15%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
+[ 16%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
+[ 16%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.obj
+[ 17%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+[ 17%] Building ASM object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S.obj
+[ 18%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+[ 18%] Building ASM object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
+[ 19%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+[ 20%] Building ASM object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
+[ 20%] Building ASM object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+[ 21%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
+[ 21%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_double/double_math.c.obj
+[ 22%] Building ASM object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+[ 23%] Building ASM object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
+[ 23%] Building ASM object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_float/float_aeabi.S.obj
+[ 24%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
+[ 24%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_float/float_math.c.obj
+[ 25%] Building ASM object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim.S.obj
+[ 25%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.obj
+[ 26%] Building ASM object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+[ 27%] Building ASM object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
+[ 27%] Building CXX object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.obj
+/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp:24:6: warning: the program should also define 'void operator delete [](void*, unsigned int)' [-Wsized-deallocation]
+ void operator delete[](void *p) noexcept { std::free(p); }
+      ^~~~~~~~
+[ 28%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+[ 28%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+[ 29%] Building C object camelforth-a/pico-hw/pico-LED/CMakeFiles/pico-LED.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+[ 30%] Linking CXX static library libpico-LED.a
+[ 30%] Built target pico-LED
+Scanning dependencies of target ELF2UF2Build
+[ 30%] Creating directories for 'ELF2UF2Build'
+[ 31%] No download step for 'ELF2UF2Build'
+[ 32%] No patch step for 'ELF2UF2Build'
+[ 32%] No update step for 'ELF2UF2Build'
+[ 33%] Performing configure step for 'ELF2UF2Build'
+-- The C compiler identification is GNU 8.3.0
+-- The CXX compiler identification is GNU 8.3.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-examples/build/elf2uf2
+[ 33%] Performing build step for 'ELF2UF2Build'
+Scanning dependencies of target elf2uf2
+[ 50%] Building CXX object CMakeFiles/elf2uf2.dir/main.cpp.o
+[100%] Linking CXX executable elf2uf2
+[100%] Built target elf2uf2
+[ 34%] No install step for 'ELF2UF2Build'
+[ 34%] Completed 'ELF2UF2Build'
+[ 34%] Built target ELF2UF2Build
+Scanning dependencies of target forth
+[ 34%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/forth.c.obj
+[ 35%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
+[ 36%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
+[ 36%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+[ 37%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_platform/platform.c.obj
+[ 37%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.obj
+[ 38%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+[ 39%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj
+[ 39%] Building ASM object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_divider/divider.S.obj
+[ 40%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/common/pico_time/time.c.obj
+[ 40%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/common/pico_time/timeout_helper.c.obj
+[ 41%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+[ 41%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/common/pico_sync/sem.c.obj
+[ 42%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/common/pico_sync/lock_core.c.obj
+[ 43%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/common/pico_sync/mutex.c.obj
+[ 43%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/common/pico_sync/critical_section.c.obj
+[ 44%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/common/pico_util/datetime.c.obj
+[ 44%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/common/pico_util/pheap.c.obj
+[ 45%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/common/pico_util/queue.c.obj
+[ 45%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+[ 46%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+[ 47%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
+[ 47%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
+[ 48%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.obj
+[ 48%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+[ 49%] Building ASM object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S.obj
+[ 50%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+[ 50%] Building ASM object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
+[ 51%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+[ 51%] Building ASM object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
+[ 52%] Building ASM object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+[ 52%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
+[ 53%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_double/double_math.c.obj
+[ 54%] Building ASM object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+[ 54%] Building ASM object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
+[ 55%] Building ASM object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_float/float_aeabi.S.obj
+[ 55%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
+[ 56%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_float/float_math.c.obj
+[ 57%] Building ASM object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim.S.obj
+[ 57%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.obj
+[ 58%] Building ASM object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+[ 58%] Building ASM object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
+[ 59%] Building CXX object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.obj
+/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp:24:6: warning: the program should also define 'void operator delete [](void*, unsigned int)' [-Wsized-deallocation]
+ void operator delete[](void *p) noexcept { std::free(p); }
+      ^~~~~~~~
+[ 59%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+[ 60%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+[ 61%] Building C object camelforth-a/forth/CMakeFiles/forth.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+[ 61%] Linking CXX static library libforth.a
+[ 61%] Built target forth
+Scanning dependencies of target camelforth-a
+[ 62%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/camelforth-a.c.obj
+[ 62%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
+[ 63%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
+[ 63%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+[ 64%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_platform/platform.c.obj
+[ 65%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.obj
+[ 65%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+[ 66%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj
+[ 66%] Building ASM object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_divider/divider.S.obj
+[ 67%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/common/pico_time/time.c.obj
+[ 67%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/common/pico_time/timeout_helper.c.obj
+[ 68%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+[ 69%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/common/pico_sync/sem.c.obj
+[ 69%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/common/pico_sync/lock_core.c.obj
+[ 70%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/common/pico_sync/mutex.c.obj
+[ 70%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/common/pico_sync/critical_section.c.obj
+[ 71%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/common/pico_util/datetime.c.obj
+[ 72%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/common/pico_util/pheap.c.obj
+[ 72%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/common/pico_util/queue.c.obj
+[ 73%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+[ 73%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+[ 74%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
+[ 74%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
+[ 75%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.obj
+[ 76%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+[ 76%] Building ASM object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S.obj
+[ 77%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+[ 77%] Building ASM object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
+[ 78%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+[ 79%] Building ASM object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
+[ 79%] Building ASM object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+[ 80%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
+[ 80%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_double/double_math.c.obj
+[ 81%] Building ASM object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+[ 81%] Building ASM object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
+[ 82%] Building ASM object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_float/float_aeabi.S.obj
+[ 83%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
+[ 83%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_float/float_math.c.obj
+[ 84%] Building ASM object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim.S.obj
+[ 84%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.obj
+[ 85%] Building ASM object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+[ 85%] Building ASM object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
+[ 86%] Building CXX object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.obj
+/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp:24:6: warning: the program should also define 'void operator delete [](void*, unsigned int)' [-Wsized-deallocation]
+ void operator delete[](void *p) noexcept { std::free(p); }
+      ^~~~~~~~
+[ 87%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+[ 87%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+[ 88%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+[ 88%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+[ 89%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+[ 90%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+[ 90%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+[ 91%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+[ 91%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+[ 92%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.obj
+[ 92%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+[ 93%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.obj
+[ 94%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
+[ 94%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.obj
+[ 95%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.obj
+[ 95%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/lib/tinyusb/src/class/net/net_device.c.obj
+[ 96%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.obj
+[ 97%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.obj
+[ 97%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/lib/tinyusb/src/tusb.c.obj
+[ 98%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+[ 98%] Building C object camelforth-a/CMakeFiles/camelforth-a.dir/some/path/to/camelforth-rp2040-aU/17-camelforth-a.d/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.obj
+[100%] Linking CXX executable camelforth-a.elf
+[100%] Built target camelforth-a
