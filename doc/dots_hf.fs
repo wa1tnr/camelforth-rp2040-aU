@@ -16,7 +16,7 @@ HEX
 : hinum 7FFFFFFF ; : lonum -80000000 ; 
 : #SD> DEPTH [CHAR] < EMIT . 8 EMIT [CHAR] > EMIT SPACE ;
 
-: frizl SIGN #> TYPE SPACE ;
+: endfmtprt SIGN #> TYPE SPACE ;
 
 : ###>   <# DUP     0 #S ROT
     DUP 0 <
@@ -28,15 +28,14 @@ HEX
     THEN
     BASE @ 10 =
     IF
-        ( ." skewed " )
         DUP 7FFFFFFF 1 + ( 0x80000000 )
-        + ( add skewing amount to influence outcome )
+        +
         0 >
         IF ( ." greater than 7FFFFFFF " )
             DUP -10000 SWAP >
             IF
-                -1 * ( ." fotzer " )
-                frizl
+                -1 *
+                endfmtprt
             EXIT
             THEN
         THEN
@@ -60,7 +59,7 @@ HEX
     ( ABS -1 * ) ( make low negatives like -99 seem positive )
     ( ." NEVER SEEN PATH " )
     ( SIGN #> TYPE SPACE ; )
-    INVERT 1 - ( frizl )
+    INVERT 1 - ( endfmtprt )
     SIGN #>
     DROP DROP
     DUP .
