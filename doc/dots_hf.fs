@@ -18,52 +18,28 @@ HEX
 
 : endfmtprt SIGN #> TYPE SPACE ;
 
-: ###>   <# DUP     0 #S ROT
-    DUP 0 <
-    IF
-        DUP -FFFF 1 - >
-        IF
-            -1 *
-        THEN
-    THEN
-    BASE @ 10 =
-    IF
-        DUP 7FFFFFFF 1 + ( 0x80000000 )
-        +
-        0 >
-        IF ( ." greater than 7FFFFFFF " )
-            DUP -10000 SWAP >
-            IF
-                -1 *
-                endfmtprt
-            EXIT
-            THEN
-        THEN
-    THEN ( base was 0x10 )
-    -1 * ( unused path wow )
+: ###>
+  <# DUP 0 #S ROT DUP 0 <
+  IF
+      DUP -FFFF 1 - >
+      IF -1 * THEN
+  THEN
+  BASE @ 10 =
+  IF
+      DUP 7FFFFFFF 1 + + 0 >
+      IF
+          DUP -10000 SWAP >
+          IF -1 * endfmtprt EXIT THEN
+      THEN
+  THEN
+  -1 *
 
-    DUP -1000 SWAP <
-    IF
-        1000 + INVERT 1 + -1 *
-        ( ." darwin " )
-        SIGN #>
-        DROP DROP ( TYPE ) ( do not use formatted string thing )
-        DUP . ( substitute a dot for the formatted string constructed )
-    EXIT
-    THEN
-    ( upgrade the number )
-    ( ." all is flow " )
-
-    ( OPEN QUESTION as to processing remaining cases )
-
-    ( ABS -1 * ) ( make low negatives like -99 seem positive )
-    ( ." NEVER SEEN PATH " )
-    ( SIGN #> TYPE SPACE ; )
-    INVERT 1 - ( endfmtprt )
-    SIGN #>
-    DROP DROP
-    DUP .
-    ; ( was: TYPE )
+  DUP -1000 SWAP <
+  IF
+      1000 + INVERT 1 + -1 * SIGN #> DROP DROP DUP .
+  EXIT
+  THEN
+  INVERT 1 - SIGN #> DROP DROP DUP .  ;
 
 : .treal
   DUP ABS
