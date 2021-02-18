@@ -1,5 +1,36 @@
 results_debugging.txt
 
+Thu Feb 18 18:53:55 UTC 2021
+
+dots_hf.fs focus all morning.
+
+Essentially, the wrapping point was moved from 7FFFFFFF
+to -10000 (-FFFF + 1) or thereabouts.
+
+That is to say, it's signed ints but the breaking point
+isn't in the usual spot.  This way addresses in D0000000
+area come out as positive instead of -30000000 ranges.
+
+Also no more of FFFFFF67 for -99
+
+Not sure what to make of all this - so combined
+the usual transforms used mentally into a single
+version of .s that will function in a variety of
+common situations.
+
+Just be aware that it's internally inconsistent,
+in some ways.  Contast with .S from the CamelForth
+Author (B Rodriguez) and also the dot word itself
+is useful in figuring out what the 'real' number is.
+
+
+Haven't worked with the (very) new .s word definition
+enough to notice what's unsatisfactory about it.
+
+Provides a traditional stack depth in angle braces.
+
+$$
+
 CamelForth in C v0.1 - 14 Feb 2016 - Tue Feb 16 15:34:07 UTC 2021
 
 built: Wed Feb 17 16:04:54 UTC 2021 (or within the hour)
