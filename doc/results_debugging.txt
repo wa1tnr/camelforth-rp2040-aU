@@ -1,5 +1,18 @@
 results_debugging.txt
 
+Fri Feb 19 22:47:24 UTC 2021
+
+BUG: .S word prints lower case abcdef
+
+Fixed latest commit.
+
+BUG: @ now in question.  Unclear what's going on; thought
+this worked easily.
+
+DUMP still works - different mechanism to fetch?
+
+Assuming it still works in SRAM 0x20000000 space.
+
 Thu Feb 18 18:53:55 UTC 2021
 
 dots_hf.fs focus all morning.
