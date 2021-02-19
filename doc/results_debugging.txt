@@ -9,6 +9,10 @@ Fixed latest commit.
 BUG: @ now in question.  Unclear what's going on; thought
 this worked easily.
 
+Interim: The @ word ('fetch') seems to work 'a lot' so
+have assumed a conceptual error on the part of the human,
+rather than the C source. ;)
+
 DUMP still works - different mechanism to fetch?
 
 Assuming it still works in SRAM 0x20000000 space.
