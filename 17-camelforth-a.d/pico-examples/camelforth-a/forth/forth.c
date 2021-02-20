@@ -1,4 +1,4 @@
-#define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - Sat Feb 20 00:21:27 UTC 2021  ");
+#define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - Sat Feb 20 00:44:09 UTC 2021  ");
 // special attempt: make some pointerish things more robust by superstitiously using 'volatile' all over the place ;)
 // surprisingly, all these changes in this commit do compile cleanly.
 /****h* camelforth/forth.c
@@ -621,6 +621,10 @@ CODE(dots) {    /* print stack, for testing */
 //  putchar(' '); //  putchar('D');
 //  Debug message removed 09 Feb 18:13z
     printf("\n%8x:", (unsigned int)p); // TODO make print all caps ABCDEF
+
+    // hard to test the above line since it's reporting an address that
+    // isn't easily controlled in a program.
+
  // while (p >= psp) printf(" %8x", *p--); // crashes the interpreter - wa1tnr 10 Sep 2018
     while (p >= psp) { printf(" %8X", *p--); } // changed conversion to upper case ABCDEF
 }
@@ -631,6 +635,7 @@ CODE(blink) { /* -- */
 }
 
 #define AINSU_DUMP_EXTERN
+#undef AINSU_DUMP_EXTERN // temporary for testing 00:44 Sat 20 Feb 2021
 #ifdef AINSU_DUMP_EXTERN
 #include "dump.inc"
 #endif // #ifdef AINSU_DUMP_EXTERN
@@ -643,8 +648,8 @@ CODE(dump) {   /* adr n -- */
     n = *psp++;
     p = (unsigned char *)*psp++;
     for (i=0; i<n; i++) {
-        if ((i&0xf)==0) printf("\n%8x:", (unsigned int)p); // TODO make print all caps ABCDEF
-        printf(" %02x", *p++); // TODO make print all caps ABCDEF
+        if ((i&0xf)==0) printf("\n%8X:", (unsigned int)p); // TODO TESTING make print all caps ABCDEF
+        printf(" %02X", *p++); // TODO TESTING make print all caps ABCDEF
     }
 }       
 
