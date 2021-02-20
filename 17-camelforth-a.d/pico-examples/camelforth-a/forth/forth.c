@@ -1,4 +1,4 @@
-#define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - Sat Feb 20 00:44:09 UTC 2021  ");
+#define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - Sat Feb 20 00:50:40 UTC 2021  ");
 // special attempt: make some pointerish things more robust by superstitiously using 'volatile' all over the place ;)
 // surprisingly, all these changes in this commit do compile cleanly.
 /****h* camelforth/forth.c
@@ -635,7 +635,7 @@ CODE(blink) { /* -- */
 }
 
 #define AINSU_DUMP_EXTERN
-#undef AINSU_DUMP_EXTERN // temporary for testing 00:44 Sat 20 Feb 2021
+// #undef AINSU_DUMP_EXTERN // temporary for testing 00:44 Sat 20 Feb 2021
 #ifdef AINSU_DUMP_EXTERN
 #include "dump.inc"
 #endif // #ifdef AINSU_DUMP_EXTERN
