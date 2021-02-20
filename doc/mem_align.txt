@@ -1,0 +1,50 @@
+Sat Feb 20 08:34:31 UTC 2021
+
+work-up for modified @ fetch word 19-20 Feb 2021
+
+ Memory aligned @
+
+
+      0 0 0 0   address ends in 0
+
+      0 1 0 0   address ends in 4
+
+
+      1 0 0 0   address ends in 8
+
+      1 1 0 0   address ends in 0xC
+
+      so, 2^2 and 2^3 have all four combinations available no penalty.
+
+      This means if Bits 2^0 and 2^1 are both masked off
+      (never set under any circumstance) the resulting
+      address is guaranteed to end in 0, 4, 8 or 0xc.
+
+      Given_Address  &  0x1111 1111 1111 1111 1111 1111 1111 1100
+
+        .. would do the job; this means
+
+      that for every bit set in Given_Address, the corresponding
+      bit will be set, except for those two bits mentioned (2^0 and 2^1)
+      which here are guaranteed not to be set, even if Given_Address
+      has either of them set 'by mistake'.
+
+
+      AND generally is used to reset selected bits.
+
+      OR  is used to set them, without unsetting others.
+
+      So in this case, resetting potentially 'bad' bits is
+      required (2^0 and 2^1 bits must, neither of them, ever
+      be set in a 32 bit storage scheme).
+
+      000:  00 01 02 03  04 05 06 07    08 09 10 11  12 13 14 15
+            00           04             08           12
+
+    The bytes are stored in reverse sequence:
+
+      003 002 001 000  007 006 005 004  011 010 009 008  015 014 013 012
+
+     0000
+
+END
