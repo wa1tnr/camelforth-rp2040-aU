@@ -9,6 +9,15 @@ Fixed latest commit.
 BUG: @ now in question.  Unclear what's going on; thought
 this worked easily.
 
+Later: The @ word seems to operate on a correct address
+boundary; suspect an unaligned @ was attempted which then
+crashed the RP2040.  Just guessing, but that's more
+consistent with observation.
+
+i.e. 'sometime it works sometimes it doesn't' fits with
+'never did check address alignment when using @ ignorantly
+at the forth ok prompt'.
+
 Interim: The @ word ('fetch') seems to work 'a lot' so
 have assumed a conceptual error on the part of the human,
 rather than the C source. ;)
