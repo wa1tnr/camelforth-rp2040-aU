@@ -608,11 +608,11 @@ CODE(dot) {        /* temporary definition for testing */
 }
 
 CODE(dothh) {        /* temporary definition for testing */
-    printf(" %2x", *psp++); // TODO make print all caps ABCDEF
+    printf(" %2X", *psp++);
 }
 
 CODE(dothhhh) {        /* temporary definition for testing */
-    printf(" %8x", *psp++); // TODO make print all caps ABCDEF
+    printf(" %8X", *psp++);
 }
 
 CODE(dots) {    /* print stack, for testing */
