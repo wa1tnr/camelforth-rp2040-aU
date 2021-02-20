@@ -1,4 +1,4 @@
-#define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - Fri Feb 19 22:35:05 UTC 2021  ");
+#define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - Sat Feb 20 00:21:27 UTC 2021  ");
 // special attempt: make some pointerish things more robust by superstitiously using 'volatile' all over the place ;)
 // surprisingly, all these changes in this commit do compile cleanly.
 /****h* camelforth/forth.c
@@ -608,11 +608,11 @@ CODE(dot) {        /* temporary definition for testing */
 }
 
 CODE(dothh) {        /* temporary definition for testing */
-    printf(" %2x", *psp++);
+    printf(" %2x", *psp++); // TODO make print all caps ABCDEF
 }
 
 CODE(dothhhh) {        /* temporary definition for testing */
-    printf(" %8x", *psp++);
+    printf(" %8x", *psp++); // TODO make print all caps ABCDEF
 }
 
 CODE(dots) {    /* print stack, for testing */
@@ -620,7 +620,7 @@ CODE(dots) {    /* print stack, for testing */
     p = &pstack[PSTACKSIZE-2];      /* deepest element on stack */
 //  putchar(' '); //  putchar('D');
 //  Debug message removed 09 Feb 18:13z
-    printf("\n%8x:", (unsigned int)p);
+    printf("\n%8x:", (unsigned int)p); // TODO make print all caps ABCDEF
  // while (p >= psp) printf(" %8x", *p--); // crashes the interpreter - wa1tnr 10 Sep 2018
     while (p >= psp) { printf(" %8X", *p--); } // changed conversion to upper case ABCDEF
 }
@@ -643,8 +643,8 @@ CODE(dump) {   /* adr n -- */
     n = *psp++;
     p = (unsigned char *)*psp++;
     for (i=0; i<n; i++) {
-        if ((i&0xf)==0) printf("\n%8x:", (unsigned int)p);
-        printf(" %02x", *p++);
+        if ((i&0xf)==0) printf("\n%8x:", (unsigned int)p); // TODO make print all caps ABCDEF
+        printf(" %02x", *p++); // TODO make print all caps ABCDEF
     }
 }       
 
