@@ -1,0 +1,12 @@
+
+Create ../pico-sdk from this directory, populated with
+the upstream sdk.
+
+To put it another way:
+
+Change directory up one level and create a new
+directory called pico-sdk and copy/move your SDK there.
+
+Could probably 'git submodule' that in your private
+copy of this git repository as well.
+
