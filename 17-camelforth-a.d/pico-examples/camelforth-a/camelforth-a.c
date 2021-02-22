@@ -21,7 +21,7 @@
 extern void interpreter(void);
 extern int _pico_LED(void);
 
-int main() {
+int main(void) {
     sleep_ms(1800);
     uart_init(UART_ID, BAUD_RATE);
 
