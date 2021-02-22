@@ -658,6 +658,7 @@ CODE(dump) {   /* adr n -- */
 #endif // #ifndef AINSU_DUMP_EXTERN
 
 #include "rp2040_runtime.inc"
+#include "rp2040_reflash.inc"
 
 CODE(bye) {
     run = 0;
@@ -758,6 +759,7 @@ PRIMITIVE(dots);
 PRIMITIVE(dump);
 PRIMITIVE(blink);
 PRIMITIVE(runtime_init);
+PRIMITIVE(reflash);
 PRIMITIVE(bye);
 
 /* USER VARIABLES */
@@ -1549,4 +1551,5 @@ HEADER(dump, dots, 0, "\004DUMP");
 HEADER(words, dump, 0, "\005WORDS");
 HEADER(blink, words, 0, "\005blink");
 HEADER(runtime_init, blink, 0, "\003rti");
-HEADER(cold, runtime_init, 0, "\004COLD");
+HEADER(reflash, runtime_init, 0, "\007reflash");
+HEADER(cold, reflash, 0, "\004COLD");
