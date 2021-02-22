@@ -1,4 +1,4 @@
-#define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - Mon Feb 22 12:59:35 UTC 2021  ");
+#define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - Mon Feb 22 15:29:16 UTC 2021  ");
 // special attempt: make some pointerish things more robust by superstitiously using 'volatile' all over the place ;)
 // surprisingly, all these changes in this commit do compile cleanly.
 /****h* camelforth/forth.c
