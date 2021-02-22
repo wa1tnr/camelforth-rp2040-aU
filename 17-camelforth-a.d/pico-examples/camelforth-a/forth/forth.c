@@ -1,4 +1,4 @@
-#define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - Mon Feb 22 15:29:16 UTC 2021  ");
+#define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - Mon Feb 22 17:28:22 UTC 2021  ");
 // special attempt: make some pointerish things more robust by superstitiously using 'volatile' all over the place ;)
 // surprisingly, all these changes in this commit do compile cleanly.
 /****h* camelforth/forth.c
@@ -45,7 +45,7 @@
 // Rpi Pico RP2040 SDK:
 #include <stdio.h>
 #include "pico/stdio.h"
-#include "pico/runtime.h"
+// #include "pico/runtime.h"
 // #include "pico/stdlib.h"
 
 // original camelforth:
@@ -657,7 +657,7 @@ CODE(dump) {   /* adr n -- */
 
 #endif // #ifndef AINSU_DUMP_EXTERN
 
-#include "rp2040_runtime.inc"
+// #include "rp2040_runtime.inc"
 #include "rp2040_reflash.inc"
 
 CODE(bye) {
@@ -758,7 +758,7 @@ PRIMITIVE(dothhhh);
 PRIMITIVE(dots);
 PRIMITIVE(dump);
 PRIMITIVE(blink);
-PRIMITIVE(runtime_init);
+// PRIMITIVE(runtime_init);
 PRIMITIVE(reflash);
 PRIMITIVE(bye);
 
@@ -1550,6 +1550,5 @@ HEADER(dots, dothhhh, 0, "\002.S");
 HEADER(dump, dots, 0, "\004DUMP");
 HEADER(words, dump, 0, "\005WORDS");
 HEADER(blink, words, 0, "\005blink");
-HEADER(runtime_init, blink, 0, "\003rti");
-HEADER(reflash, runtime_init, 0, "\007reflash");
+HEADER(reflash, blink, 0, "\007reflash");
 HEADER(cold, reflash, 0, "\004COLD");
