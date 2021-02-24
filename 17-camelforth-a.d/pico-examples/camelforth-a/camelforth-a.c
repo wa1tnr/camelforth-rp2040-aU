@@ -19,6 +19,7 @@
 #define UART_TX_PIN 0
 #define UART_RX_PIN 1
 extern void interpreter(void);
+extern void crufty_printer(void);
 extern int _pico_LED(void);
 
 int main(void) {
@@ -38,6 +39,7 @@ int main(void) {
 
     uart_puts(UART_ID, "    9 Feb good production build. +dump +blink +UART +USB\r\n");
 
+    crufty_printer(); // examine ram with this nonsense function
     while(1) {
         // _pico_LED(); // test using GPIO hardware to blink Pi Pico onboard LED
         interpreter(); // camelforth
