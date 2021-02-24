@@ -1,3 +1,11 @@
 $ git clone -b master https://github.com/raspberrypi/pico-sdk.git
 $ cd pico-sdk
 $ git submodule update --init
+
+PICO_DEFAULT_BINARY_TYPE=copy_to_ram
+
+PICO_COPY_TO_RAM=1
+
+page 266 sdk
+
+Wed Feb 24 12:42:55 UTC 2021
