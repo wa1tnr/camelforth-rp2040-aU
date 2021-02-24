@@ -3,6 +3,8 @@ add_executable(camelforth-a
         )
 target_compile_definitions(camelforth-a PRIVATE
     #PICO_ENTER_USB_BOOT_ON_EXIT=1
+    # PICO_COPY_TO_RAM=1
+    PICO_DEFAULT_BINARY_TYPE=copy_to_ram
 )
 
 # target_link_libraries(camelforth-a forth pico-LED pico_stdlib)
