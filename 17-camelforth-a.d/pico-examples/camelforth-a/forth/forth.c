@@ -1,4 +1,4 @@
-#define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - Mon Feb 22 17:28:22 UTC 2021  ");
+#define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - Wed Feb 24 13:47:02 UTC 2021  ");
 // special attempt: make some pointerish things more robust by superstitiously using 'volatile' all over the place ;)
 // surprisingly, all these changes in this commit do compile cleanly.
 /****h* camelforth/forth.c
@@ -776,7 +776,8 @@ THREAD(lp) = { Fdouser, LIT(9) };
 // THREAD(idp) = { Fdouser, LIT(10) };          /* not used in this model */
 THREAD(newest) = { Fdouser, LIT(11) };
 
-extern const struct Header Hcold;
+// extern const struct Header Hcold;
+extern struct Header Hcold;
 
 THREAD(uinit) = { Fdorom, 
     LIT(0),  LIT(0),  LIT(10), LIT(0),  // u0 >in base state
@@ -801,6 +802,7 @@ THREAD(three) = { Fdocon, LIT(3) };
 THREAD(minusone) = { Fdocon, LIT(-1) };
 
 /* TO BE SUPPLIED */
+// #define TBD(name)  const void * T##name[] = { Fenter, Texit }
 #define TBD(name)  const void * T##name[] = { Fenter, Texit }
 
 /* CPU DEPENDENCIES */
@@ -1066,7 +1068,8 @@ THREAD(qnumber) = { Fenter, Tdup, Tzero, Tdup, Trot, Tcount,
  /*2*/  Tminusone,
  /*3*/  Texit };
 
-extern const void * Tabort[];   /* forward reference */
+// extern const void * Tabort[];   /* forward reference */
+extern void * Tabort[];   /* forward reference */
 
 THREAD(interpret) = { Fenter,   
         Tticksource, Ttwostore, Tzero, Ttoin, Tstore,
@@ -1089,7 +1092,8 @@ THREAD(evaluate) = { Fenter, Tticksource, Ttwofetch, Ttor, Ttor,
         Trfrom, Ttoin, Tstore, Trfrom, Trfrom,
         Tticksource, Ttwostore, Texit };
 
-const char okprompt[] = "\003ok ";
+// const char okprompt[] = "\003ok ";
+char okprompt[] = "\003ok ";
 
 THREAD(quit) = { Fenter, Tl0, Tlp, Tstore,
         Tr0, Trpstore, Tzero, Tstate, Tstore,
@@ -1105,7 +1109,8 @@ THREAD(qabort) = { Fenter, Trot, Tqbranch, OFFSET(3), Titype, Tabort,
                    
 THREAD(abortquote) = { Fenter, Tisquote, Tlit, Tqabort, Tcommaxt, Texit };
 
-const char huhprompt[] = "\001?";
+// const char huhprompt[] = "\001?";
+char huhprompt[] = "\001?";
 
 THREAD(tick) = { Fenter, Tbl, Tword, Tfind, Tzeroequal, 
         Tlit, huhprompt, Ticount, Tqabort, Texit };
@@ -1255,7 +1260,8 @@ THREAD(words) = { Fenter, Tlatest, Tfetch,
 /* MAIN ENTRY POINT */
 
 // const char coldprompt[] = "\103CamelForth in C v0.1 - 14 Feb 2016 - 09 Feb 2021 15:36:16 UTC      ";
-const char coldprompt[] = VERS_CFORTH
+// const char coldprompt[] = VERS_CFORTH
+char coldprompt[] = VERS_CFORTH
 //                             1234512345123451234512345123451234567890123456789012345678901234567
 
 THREAD(cold) = { Fenter, 
@@ -1272,6 +1278,7 @@ THREAD(cold) = { Fenter,
     xt w x are 'inside jobs' and don't get touched
     psp rsp ip and run are from outside world and are candidates
 */
+
 void interpreter(void)
 {
     void (*xt)(void *);     /* pointer to code function */
@@ -1292,12 +1299,29 @@ void interpreter(void)
     }        
 }
 
+#define DOFILLS_aaaaa ("\103abcde dot dot dot dot dot dash dot dash period question delve dout ");
+#define DOFILLS_aaaab ("\103abcde dot dot dot dot dot dash dot dash period question delve dout ");
+#define DOFILLS_aaaac ("\103abcde dot dot dot dot dot dash dot dash period question delve dout ");
+#define DOFILLS_greed ("\3431234567890a123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890bcde dot dot dot dot dot dash dot dash period question delve dout ");
+char dofillaaaaa[] = DOFILLS_aaaaa
+char dofillaaaab[] = DOFILLS_aaaab
+char dofillaaaac[] = DOFILLS_aaaac
+char dofillgreed[] = DOFILLS_greed
+
+void crufty_printer(void) {
+    printf("%s", dofillaaaaa);
+    printf("%s", dofillaaaab);
+    printf("%s", dofillaaaac);
+    printf("%s", dofillgreed);
+}
+
 /*
  * DICTIONARY HEADERS
  */
 
 /* first header must be explicitly spelled out for null link */
-const struct Header Hexit = {  NULL, Texit, 0, "\004EXIT"  };
+// const struct Header Hexit = {  NULL, Texit, 0, "\004EXIT"  };
+struct Header Hexit = {  NULL, Texit, 0, "\004EXIT"  };
 
 HEADER(execute, exit, 0, "\007EXECUTE");
 HEADER(lit, execute, 0, "\003lit");
@@ -1552,3 +1576,5 @@ HEADER(words, dump, 0, "\005WORDS");
 HEADER(blink, words, 0, "\005blink");
 HEADER(reflash, blink, 0, "\007reflash");
 HEADER(cold, reflash, 0, "\004COLD");
+
+
