@@ -75,12 +75,12 @@ struct Header {
 };
 #endif
  
-#define HEADER(name,prev,flags,namestring) const struct Header H##name =\
+#define HEADER(name,prev,flags,namestring) struct Header H##name =\
     { (char *)H##prev.nfa, T##name, flags, namestring }
 #define IMMEDIATE 1         /* immediate bit in flags */
 
 #define CODE(name)       void F##name (void * pfa)
-#define PRIMITIVE(name)  const void * T##name[] = { F##name }
-#define THREAD(name)     const void * T##name[]
+#define PRIMITIVE(name)  void * T##name[] = { F##name }
+#define THREAD(name)     void * T##name[]
 #define OFFSET(n)   (void *)(n*CELL)       /* see CELL above, = 4 */
 #define LIT(n)      (void *)(n)
