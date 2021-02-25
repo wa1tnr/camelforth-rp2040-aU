@@ -9,7 +9,10 @@
  */
 
 #include <stdio.h>
+#include "pico/stdio.h"     // rp2040_flash_ops.inc
+#include <stdlib.h>         // rp2040_flash_ops.inc
 #include "pico/stdlib.h"
+#include "hardware/flash.h" // rp2040_flash_ops.inc
 
 /// \tag::hello_uart[]
 
