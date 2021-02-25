@@ -1,0 +1,91 @@
+Terminal ready
+[nonsense strings suppressed .. ignore them in real program]
+
+CamelForth in C v0.1 - 14 Feb 2016 - Thu Feb 25 13:54:07 UTC 2021  
+ 
+ok  
+
+( not word-wrapped - entire forth vocabulary shown on the next line )
+
+ok WORDS COLD flwrite reflash blink WORDS DUMP .S .HHHH .HH MARKER ENVIRONMENT? DEPTH MOVE WITHIN LEAVE +LOOP LOOP ENDLOOP DO L> >L REPEAT WHILE AGAIN UNTIL BEGIN ELSE THEN IF COMPILE POSTPONE ['] ; : IMMEDIATE REVEAL HIDE ] [ RECURSE DOES> (DOES>) CREATE USER CONSTANT VARIABLE <BUILDS HEADER ( [CHAR] CHAR ' ABORT" ?ABORT ABORT QUIT EVALUATE INTERPRET ?NUMBER >NUMBER ?SIGN DIGIT? LITERAL FIND IMMED? NFA>CFA NFA>LFA ." S" (S") WORD PARSE ADR>IN >COUNTED /STRING SOURCE HEX DECIMAL . U. SIGN #> #S # >DIGIT <# HOLD UD* UD/MOD TYPE ACCEPT SPACES SPACE CR COUNT CELLS UMIN UMAX MIN MAX */ */MOD MOD / /MOD * FM/MOD SM/REM M* DABS ?DNEGATE DNEGATE ABS ?NEGATE S>D 2OVER 2SWAP 2DUP 2DROP 2! 2@ ,NONE !DEST ,DEST ,BRANCH ,EXIT !COLON ,CF !CF COMPILE, >BODY CHAR+ CELL+ ALIGN ALIGNED C, , ALLOT HERE CHARS CELL -1 3 2 1 0 BL TIBSIZE TIB R0 S0 L0 PAD #INIT UINIT NEWEST LP HP LATEST 'SOURCE DP STATE BASE >IN U0 BYE KEY? EMIT KEY N= S= SCAN SKIP I->D CMOVE> CMOVE FILL UM/MOD UM* UNLOOP J I (do) (loop) (+loop) ?branch branch U> U< > < <> = 0< 0= RSHIFT LSHIFT 2/ 2* >< 1- 1+ NEGATE INVERT XOR OR AND / * - M+ +! + HC! HC@ H! H@ IC! IC@ I! I@ C! C@ ! @ RP! RP@ SP! SP@ R@ R> >R TUCK NIP ROT OVER SWAP DROP ?DUP DUP lit EXECUTE EXIT 
+ok  
+ok flwrite Generated random data:
+51 b1 b5 03 70 fd 8b 29 89 03 cd 77 a3 e4 83 e1
+2d 1f 03 f7 a7 a8 a0 4a 53 18 e3 ab 43 81 52 9a
+.
+.
+6e 67 cb 2c 8f 81 7f 07 cb 01 63 72 30 ab 30 5a
+20 03 35 d9 d8 9c d3 a5 12 70 e7 31 06 bf f7 ff
+
+Erasing target region...
+Done. Read back target region:
+ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+.
+.
+ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+
+Programming target region...
+Done. Read back target region:
+51 b1 b5 03 70 fd 8b 29 89 03 cd 77 a3 e4 83 e1
+2d 1f 03 f7 a7 a8 a0 4a 53 18 e3 ab 43 81 52 9a
+.
+.
+6e 67 cb 2c 8f 81 7f 07 cb 01 63 72 30 ab 30 5a
+20 03 35 d9 d8 9c d3 a5 12 70 e7 31 06 bf f7 ff
+Programming successful!
+
+
+            XIP_BASE: 10000000
+
+ FLASH_TARGET_OFFSET:    40000
+
+       start_address: 10040000
+
+
+ok HEX 10040000 10 - 2 DUMP 
+1003FFF0:  55 FA C0 46  DC F2 06 10   10 EE 06 10  6C 07 00 20   U..F........l.. 
+10040000:  51 B1 B5 03  70 FD 8B 29   89 03 CD 77  A3 E4 83 E1   Q...p..)...w....
+ok
+
+ok flwrite Generated random data:
+d5 dc 8d ad c2 98 a4 2a 2e 2e ec 7b e1 74 0c ba
+e2 bb a9 f0 32 c4 3d 4a a9 55 7c b9 70 d7 5a a7
+.
+.
+9b 6f 67 76 ed 3f 7a 3e a9 84 59 a6 4b 60 92 c4
+6f 76 b7 d6 ed 6d e7 ab e8 b8 12 03 58 11 50 eb
+
+Erasing target region...
+Done. Read back target region:
+ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+.
+.
+ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+
+Programming target region...
+Done. Read back target region:
+d5 dc 8d ad c2 98 a4 2a 2e 2e ec 7b e1 74 0c ba
+e2 bb a9 f0 32 c4 3d 4a a9 55 7c b9 70 d7 5a a7
+.
+.
+9b 6f 67 76 ed 3f 7a 3e a9 84 59 a6 4b 60 92 c4
+6f 76 b7 d6 ed 6d e7 ab e8 b8 12 03 58 11 50 eb
+Programming successful!
+
+
+            XIP_BASE: 10000000
+
+ FLASH_TARGET_OFFSET:    40000
+
+       start_address: 10040000
+
+
+ok 10040000 10 - 2 DUMP 
+1003FFF0:  55 FA C0 46  DC F2 06 10   10 EE 06 10  6C 07 00 20   U..F........l.. 
+10040000:  D5 DC 8D AD  C2 98 A4 2A   2E 2E EC 7B  E1 74 0C BA   .......*...{.t..
+ok 
+END.
