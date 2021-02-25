@@ -27,7 +27,7 @@ void print_buf(const uint8_t *buf, size_t len) {
     }
 }
 
-int main() {
+void flash_write_test(void) {
     stdio_init_all();
     uint8_t random_data[FLASH_PAGE_SIZE];
     for (int i = 0; i < FLASH_PAGE_SIZE; ++i)
