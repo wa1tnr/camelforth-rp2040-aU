@@ -1,9 +1,26 @@
 // flash.inc - first instance of this file 25 Feb 11:49z
 // No TYPOS are expected to be present.
 
+//  ok HEX 100 400 * DECIMAL . 262144
+
+//  ok HEX 100 400 * 10000000 + . 10040000
+
 // straight out of the SDK manual
 
 // designed to be an inline include of forth.c
+
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+//   special NOTE:
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+//   The old version of the program stays in flash,
+//   when no_flash is used wrt current binary.
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+
+// So, after compiling a ram-only program
+// and uploading the corresponding UF2,
+// and you need to cycle power for any reason,
+// the target still boots from the older
+// (or 'resident') version.
 
 // Rpi Pico RP2040 SDK:
 // #include <stdio.h> // found already in forth.c
@@ -56,6 +73,19 @@ void flash_write_test(void) {
         printf("Programming failed!\n");
     else
         printf("Programming successful!\n");
+
+        printf("%s", "\n\n            XIP_BASE: ");
+        printf("%8X",   (uint32_t) XIP_BASE);
+
+        printf("%s", "\n\n FLASH_TARGET_OFFSET: ");
+        printf("%8X", (uint32_t) FLASH_TARGET_OFFSET);
+
+        uint32_t start_address = (uint32_t) XIP_BASE + (uint32_t) FLASH_TARGET_OFFSET ;
+
+        printf("%s", "\n\n       start_address: ");
+        printf("%8X", start_address);
+
+        printf("%s", "\n\n");
 }
 
 // END.
