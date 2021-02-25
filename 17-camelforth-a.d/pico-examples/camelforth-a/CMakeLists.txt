@@ -1,15 +1,19 @@
 add_executable(camelforth-a
         camelforth-a.c
         )
+
+
 target_compile_definitions(camelforth-a PRIVATE
     #PICO_ENTER_USB_BOOT_ON_EXIT=1
     # PICO_COPY_TO_RAM=1
-    PICO_DEFAULT_BINARY_TYPE=copy_to_ram
+    # PICO_DEFAULT_BINARY_TYPE=copy_to_ram
+    # PICO_DEFAULT_BINARY_TYPE=no_flash # was: copy_to_ram
 )
 
 # target_link_libraries(camelforth-a forth pico-LED pico_stdlib)
-target_link_libraries(camelforth-a PRIVATE forth pico-LED pico_stdlib)
+target_link_libraries(camelforth-a PRIVATE forth pico-LED hardware_flash pico_stdlib)
 
+pico_set_binary_type(camelforth-a no_flash)
 pico_enable_stdio_usb(camelforth-a 1)
 pico_enable_stdio_uart(camelforth-a 1) # was zero
 
