@@ -1,4 +1,4 @@
-#define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - Thu Feb 25 15:52:54 2021  ");
+#define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - Thu Feb 25 21:23:49 UTC 2021  ");
 // special attempt: make some pointerish things more robust by superstitiously using 'volatile' all over the place ;)
 // surprisingly, all these changes in this commit do compile cleanly.
 /****h* camelforth/forth.c
@@ -768,6 +768,7 @@ PRIMITIVE(blink);
 // PRIMITIVE(runtime_init);
 PRIMITIVE(reflash);
 PRIMITIVE(flwrite);
+PRIMITIVE(erase);
 PRIMITIVE(bye);
 
 /* USER VARIABLES */
@@ -1310,18 +1311,25 @@ void interpreter(void)
 #define DOFILLS_aaaaa ("\103abcde dot dot dot dot dot dash dot dash period question delve dout ");
 #define DOFILLS_aaaab ("\103abcde dot dot dot dot dot dash dot dash period question delve dout ");
 #define DOFILLS_aaaac ("\103abcde dot dot dot dot dot dash dot dash period question delve dout ");
-#define DOFILLS_greed ("\343\n\n +flwrite Thu Feb 25 15:52:54 2021 UTC branch\n flwrite-a 9cb06dc FUNCTIONS WELL\n copy-to-ram mode\n\n 23456789012345678901234567890123456789012345678901234567890bcde dot dot dot dot dot dash dot dash period question delve dout ");
+// #define DOFILLS_greed ("\343\n\n +flwrite +erase Thu Feb 25 21:23:49 UTC 2021 \n branch erase_sector-a e6237de UNDER TEST    \n copy_to_ram mode\n\n 5678901234567890123456789012345678901234567890bcde dot dot dot dot dot dash dot dash period question delve dout ");
+
+// 128 decimal
+#define DOFILLS_datus ("\200\n\n +flwrite +erase Thu Feb 25 21:23:49 UTC 2021 \n branch erase_sector-a e6237de UNDER TEST    \n copy_to_ram mode\n\n            ");
+
+// #define DOFILLS_greed ("\343\n\n +flwrite Thu Feb 25 15:52:54 2021 UTC branch\n flwrite-a 9cb06dc FUNCTIONS WELL\n copy-to-ram mode\n\n 23456789012345678901234567890123456789012345678901234567890bcde dot dot dot dot dot dash dot dash period question delve dout ");
 
 char dofillaaaaa[] = DOFILLS_aaaaa
 char dofillaaaab[] = DOFILLS_aaaab
 char dofillaaaac[] = DOFILLS_aaaac
-char dofillgreed[] = DOFILLS_greed
+// char dofillgreed[] = DOFILLS_greed
+char dofilldatus[] = DOFILLS_datus
 
 void crufty_printer(void) {
     printf("%s", dofillaaaaa);
     printf("%s", dofillaaaab);
     printf("%s", dofillaaaac);
-    printf("%s", dofillgreed);
+//  printf("%s", dofillgreed);
+    printf("%s", dofilldatus);
 }
 
 /*
@@ -1584,6 +1592,7 @@ HEADER(dump, dots, 0, "\004DUMP");
 HEADER(words, dump, 0, "\005WORDS");
 HEADER(blink, words, 0, "\005blink");
 HEADER(reflash, blink, 0, "\007reflash");
-HEADER(flwrite,reflash, 0, "\007flwrite");
-HEADER(cold, flwrite, 0, "\004COLD");
+HEADER(flwrite, reflash, 0, "\007flwrite");
+HEADER(erase, flwrite, 0, "\005erase");
+HEADER(cold, erase, 0, "\004COLD");
 
