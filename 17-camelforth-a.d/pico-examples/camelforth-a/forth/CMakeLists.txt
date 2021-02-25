@@ -3,4 +3,7 @@ if ( CMAKE_COMPILER_IS_GNUCC )
 endif()
 add_library(forth forth.c)
 # target_link_libraries(forth hardware_watchdog pico_stdlib)
-target_link_libraries(forth pico_runtime pico_stdlib)
+
+# latest:
+# target_link_libraries(forth pico_runtime flash pico_stdlib)
+target_link_libraries(forth pico_runtime hardware_flash pico_stdlib)
