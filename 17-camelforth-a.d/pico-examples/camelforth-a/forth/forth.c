@@ -1,4 +1,4 @@
-#define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - Wed Feb 24 13:47:02 UTC 2021  ");
+#define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - Thu Feb 25 13:54:07 UTC 2021  ");
 // special attempt: make some pointerish things more robust by superstitiously using 'volatile' all over the place ;)
 // surprisingly, all these changes in this commit do compile cleanly.
 /****h* camelforth/forth.c
@@ -659,6 +659,13 @@ CODE(dump) {   /* adr n -- */
 
 // #include "rp2040_runtime.inc"
 #include "rp2040_reflash.inc"
+#include "rp2040_flash_ops.inc"
+
+extern void flash_write_test(void);
+CODE(flwrite) { /* -- */
+    flash_write_test();
+    _pico_LED();
+}
 
 CODE(bye) {
     run = 0;
@@ -760,6 +767,7 @@ PRIMITIVE(dump);
 PRIMITIVE(blink);
 // PRIMITIVE(runtime_init);
 PRIMITIVE(reflash);
+PRIMITIVE(flwrite);
 PRIMITIVE(bye);
 
 /* USER VARIABLES */
@@ -1575,6 +1583,6 @@ HEADER(dump, dots, 0, "\004DUMP");
 HEADER(words, dump, 0, "\005WORDS");
 HEADER(blink, words, 0, "\005blink");
 HEADER(reflash, blink, 0, "\007reflash");
-HEADER(cold, reflash, 0, "\004COLD");
-
+HEADER(flwrite,reflash, 0, "\007flwrite");
+HEADER(cold, flwrite, 0, "\004COLD");
 
