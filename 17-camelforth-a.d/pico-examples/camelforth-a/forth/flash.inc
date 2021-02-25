@@ -1,5 +1,12 @@
-// THIS ONE COMMIT closest in line numbers to the upstream.  Compare *here*.
-// flash.inc - first instance of this file 25 Feb 11:49z LINE // TYPOS are present.  At least one introduced purposefully. ;) LINE // straight out of the SDK manual LINE // Rpi Pico RP2040 SDK: LINE // #include <stdio.h>
+// flash.inc - first instance of this file 25 Feb 11:49z
+// No TYPOS are expected to be present.
+
+// straight out of the SDK manual
+
+// designed to be an inline include of forth.c
+
+// Rpi Pico RP2040 SDK:
+// #include <stdio.h> // found already in forth.c
 #include "pico/stdio.h"
 #include <stdlib.h>
 #include "pico/stdlib.h"
