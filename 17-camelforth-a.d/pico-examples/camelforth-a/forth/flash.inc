@@ -1,9 +1,6 @@
-// flash.inc - first instance of this file 25 Feb 11:49z
-
-// TYPOS are present.  At least one introduced purposefully. ;)
-
-// straight out of the SDK manual
-#include <sXXXtdio.h>
+// THIS ONE COMMIT closest in line numbers to the upstream.  Compare *here*.
+// flash.inc - first instance of this file 25 Feb 11:49z LINE // TYPOS are present.  At least one introduced purposefully. ;) LINE // straight out of the SDK manual LINE // Rpi Pico RP2040 SDK: LINE // #include <stdio.h>
+#include "pico/stdio.h"
 #include <stdlib.h>
 #include "pico/stdlib.h"
 #include "hardware/flash.h"
@@ -11,18 +8,17 @@
 // Once done, we can access this at XIP_BASE + 256k.
 #define FLASH_TARGET_OFFSET (256 * 1024)
 
-
 const uint8_t *flash_target_contents = (const uint8_t *) (XIP_BASE + FLASH_TARGET_OFFSET);
 
 void print_buf(const uint8_t *buf, size_t len) {
     for (size_t i = 0; i < len; ++i) {
         printf("%02x", buf[i]);
-        if (i % 16 == 15) printf("\n");
+        if (i % 16 == 15)
+            printf("\n");
         else
-        printf(" ");
+            printf(" ");
     }
 }
-
 
 int main() {
     stdio_init_all();
