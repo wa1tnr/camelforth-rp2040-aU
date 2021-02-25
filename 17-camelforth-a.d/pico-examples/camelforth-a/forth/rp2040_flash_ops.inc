@@ -44,6 +44,21 @@ void print_buf(const uint8_t *buf, size_t len) {
     }
 }
 
+/*
+void erase_sector(void) {
+    flash_range_erase(FLASH_TARGET_OFFSET, FLASH_SECTOR_SIZE);
+}
+*/
+
+CODE(erase) {                    /* adr n -- */
+    stdio_init_all();
+    printf("\nErasing target sector...\n");
+    uint32_t j = (uint32_t) psp[0]; // psp++; // pop?
+    uint32_t k = j - 0x10000000; // remove XIP_BASE to get just the offset
+    flash_range_erase(k, FLASH_SECTOR_SIZE);
+    printf("Done. Exiting the 'erase' word.\n");
+}
+
 void flash_write_test(void) {
     stdio_init_all();
     uint8_t random_data[FLASH_PAGE_SIZE];
