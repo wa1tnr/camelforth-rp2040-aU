@@ -1,26 +1,11 @@
-// flash.inc - first instance of this file 25 Feb 11:49z
-// No TYPOS are expected to be present.
+// flash.inc
+// Sat Feb 27 21:48:27 UTC 2021
 
 //  ok HEX 100 400 * DECIMAL . 262144
 
 //  ok HEX 100 400 * 10000000 + . 10040000
 
-// straight out of the SDK manual
-
 // designed to be an inline include of forth.c
-
-// - - - - - - - - - - - - - - - - - - - - - - - - -
-//   special NOTE:
-// - - - - - - - - - - - - - - - - - - - - - - - - -
-//   The old version of the program stays in flash,
-//   when no_flash is used wrt current binary.
-// - - - - - - - - - - - - - - - - - - - - - - - - -
-
-// So, after compiling a ram-only program
-// and uploading the corresponding UF2,
-// and you need to cycle power for any reason,
-// the target still boots from the older
-// (or 'resident') version.
 
 // Rpi Pico RP2040 SDK:
 // #include <stdio.h> // found already in forth.c
@@ -44,12 +29,6 @@ void print_buf(const uint8_t *buf, size_t len) {
     }
 }
 
-/*
-void erase_sector(void) {
-    flash_range_erase(FLASH_TARGET_OFFSET, FLASH_SECTOR_SIZE);
-}
-*/
-
 #define FL_LIMIT_2MB        0x1E8000
 
 CODE(erase) {                    /* adr n -- */
@@ -58,36 +37,19 @@ CODE(erase) {                    /* adr n -- */
 
     uint32_t j = (uint32_t) psp[0]; // psp++; // pop?
 
-    if (j < 0x10000000) { printf("ERROR in flash ops: TOS too small\n"); return; }
-    if (j > (0x10000000 + FL_LIMIT_2MB)) { printf("ERROR in flash ops: TOS too large\n"); return; }
-
     uint32_t k = j - 0x10000000; // remove XIP_BASE to get just the offset
 
-// #WARNING switched to && from &
+    j = k & 0x1FF000; // align to 4096 byte boundaries
+    //      0x1E8000
 
-             j = k && 0x1FF000; // align to 4096 byte boundaries
+    k = j;
 
-             if (j > FL_LIMIT_2MB) { printf("Unexpected error.\n"); return; }
+    printf("DEBUG: %8X", k); printf("%s", " was number input.\n");
 
-             k = j;
+    flash_range_erase((uint32_t)k, FLASH_SECTOR_SIZE);
 
-    if (k < 0) { printf("ERROR in flash ops: less than zero from XIP_BASE\n"); return; }
-
-    if (k < FL_LIMIT_2MB) { // 0x1FF000) {
-
-        // printf("DEBUG: %8X", k); printf("%s", " was number input.\n");
-
-        if (k > -1) { // 0 as a > test value here, is a C coding error
-            flash_range_erase((uint32_t)k, FLASH_SECTOR_SIZE);
-        } else {
-            printf("Unexpected error .. exiting early.\n"); // seen this when k > 0 test performed
-            return;
-        }
-        printf("Done. Exiting the 'erase' word.\n");
-        return;
-    } else {
-        printf("Nothing done - input error.  k too large.\n");
-    }
+    printf("Done. Exiting the 'erase' word.\n");
+    // printf("Nothing done - input error.  k too large.\n");
 }
 
 void flash_write_test(void) {
