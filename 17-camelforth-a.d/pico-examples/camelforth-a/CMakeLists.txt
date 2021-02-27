@@ -8,7 +8,8 @@ target_compile_definitions(camelforth-a PRIVATE
 )
 
 # target_link_libraries(camelforth-a forth pico-LED pico_stdlib)
-target_link_libraries(camelforth-a PRIVATE forth pico-LED hardware_flash pico_stdlib)
+# target_link_libraries(camelforth-a PRIVATE forth pico-LED hardware_flash pico_stdlib)
+target_link_libraries(camelforth-a forth pico-LED hardware_flash pico_stdlib)
 
 # pico_set_binary_type(camelforth-a copy_to_ram)
 pico_set_binary_type(camelforth-a copy_to_ram)

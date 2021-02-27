@@ -1,5 +1,5 @@
 // flash.inc
-// Sat Feb 27 21:48:27 UTC 2021
+// Sat Feb 27 22:50:01 UTC 2021
 
 //  ok HEX 100 400 * DECIMAL . 262144
 
@@ -46,7 +46,7 @@ CODE(erase) {                    /* adr n -- */
 
     printf("DEBUG: %8X", k); printf("%s", " was number input.\n");
 
-    flash_range_erase((uint32_t)k, FLASH_SECTOR_SIZE);
+    flash_range_erase(k, FLASH_SECTOR_SIZE);
 
     printf("Done. Exiting the 'erase' word.\n");
     // printf("Nothing done - input error.  k too large.\n");
