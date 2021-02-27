@@ -50,13 +50,44 @@ void erase_sector(void) {
 }
 */
 
+#define FL_LIMIT_2MB        0x1E8000
+
 CODE(erase) {                    /* adr n -- */
     stdio_init_all();
     printf("\nErasing target sector...\n");
+
     uint32_t j = (uint32_t) psp[0]; // psp++; // pop?
+
+    if (j < 0x10000000) { printf("ERROR in flash ops: TOS too small\n"); return; }
+    if (j > (0x10000000 + FL_LIMIT_2MB)) { printf("ERROR in flash ops: TOS too large\n"); return; }
+
     uint32_t k = j - 0x10000000; // remove XIP_BASE to get just the offset
-    flash_range_erase(k, FLASH_SECTOR_SIZE);
-    printf("Done. Exiting the 'erase' word.\n");
+
+// #WARNING switched to && from &
+
+             j = k && 0x1FF000; // align to 4096 byte boundaries
+
+             if (j > FL_LIMIT_2MB) { printf("Unexpected error.\n"); return; }
+
+             k = j;
+
+    if (k < 0) { printf("ERROR in flash ops: less than zero from XIP_BASE\n"); return; }
+
+    if (k < FL_LIMIT_2MB) { // 0x1FF000) {
+
+        // printf("DEBUG: %8X", k); printf("%s", " was number input.\n");
+
+        if (k > -1) { // 0 as a > test value here, is a C coding error
+            flash_range_erase((uint32_t)k, FLASH_SECTOR_SIZE);
+        } else {
+            printf("Unexpected error .. exiting early.\n"); // seen this when k > 0 test performed
+            return;
+        }
+        printf("Done. Exiting the 'erase' word.\n");
+        return;
+    } else {
+        printf("Nothing done - input error.  k too large.\n");
+    }
 }
 
 void flash_write_test(void) {

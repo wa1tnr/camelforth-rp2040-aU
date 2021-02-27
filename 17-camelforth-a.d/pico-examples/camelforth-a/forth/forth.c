@@ -1,5 +1,12 @@
-#define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - Sat Feb 27 11:44:44 UTC 2021  ");
-#define DOFILLS_datus ("\200\n\n +flwrite +erase Sat Feb 27 11:44:44 UTC 2021 \n branch erase_sector-a 51ee8d7 UNDER TEST    \n copy_to_ram mode\n\n            ");
+#define DATE_STAMP "Sat Feb 27 20:01:50 UTC 2021"
+#define BRANCH_STAMP "erase_sector-a"
+#define COMMIT_STAMP "acb0322"
+// #define MODE_STAMP "copy_to_ram"
+#define MODE_STAMP "copy_to_ram"
+// #define MODE_STAMP "no_flash   "
+// #define MODE_STAMP "no_flash   "
+#define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - " DATE_STAMP "  ");
+#define DOFILLS_datus ("\200\n\n +flwrite +erase " DATE_STAMP " \n branch " BRANCH_STAMP " " COMMIT_STAMP " UNDER TEST    \n " MODE_STAMP " mode\n\n            ");
 // special attempt: make some pointerish things more robust by superstitiously using 'volatile' all over the place ;)
 // surprisingly, all these changes in this commit do compile cleanly.
 /****h* camelforth/forth.c
