@@ -1,6 +1,6 @@
-#define DATE_STAMP "Sun Feb 28 03:29:51 UTC 2021"
+#define DATE_STAMP "Sun Feb 28 03:49:59 UTC 2021"
 #define BRANCH_STAMP "erase_sector-a"
-#define COMMIT_STAMP "2bcef4a"
+#define COMMIT_STAMP "39bcf3f"
 // #define MODE_STAMP "copy_to_ram"
 #define MODE_STAMP "copy_to_ram"
 // #define MODE_STAMP "no_flash   "

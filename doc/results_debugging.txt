@@ -1,5 +1,50 @@
 results_debugging.txt
 
+Sun Feb 28 19:44:45 UTC 2021
+
+BUG: system unresponsive after QSPI flash access/ops.
+
+State: Seems okay, very brief testing done copy_to_ram mode
+(seen as more difficult; no_flash mode expected to perform
+even better, if anything).
+
+commit 39bcf3f Keyboard idle indicator
+Date:   Sun Feb 28 03:49:59 2021 +0000
+
+New feature: LED blinker while awaiting keyboard input.
+
+It was noticed that some forth words seemed to complete,
+after a flash op word (erase, flwrite .. don't remember
+which) even though the user interface never came back
+(no longer accepted keyboard input).
+
+So the idea, here, was to ascertain if getchar() was
+still listening in the do .. while loop.
+
+ref. rp2040_pico_getkey_usb.inc
+
+getchar_timeout_us(18) (not 'getchar()').
+
+Have done few tests - system didn't exhibit the problem.
+
+The test was to erase flash at 0x10050000:
+
+[power cycle boot here]
+
+ +flwrite +erase Sun Feb 28 03:29:51 UTC 2021
+ branch erase_sector-a 2bcef4a UNDER TEST
+ copy_to_ram mode
+
+[very first keystrokes typed after power cycling]:
+
+ok HEX
+ok 10050000 erase F E D C B A 9 CR 9 SPACES .S CR CR WORDS
+Erasing target sector...
+DEBUG:    50000 was number input.
+Done. Exiting the 'erase' word.
+
+(and what follows is as expected).
+
 Fri Feb 19 22:47:24 UTC 2021
 
 BUG: .S word prints lower case abcdef
