@@ -1,20 +1,14 @@
 // flash.inc
 // Sat Feb 27 23:45:07 UTC 2021
 
-//  ok HEX 100 400 * DECIMAL . 262144
-
-//  ok HEX 100 400 * 10000000 + . 10040000
-
 // designed to be an inline include of forth.c
 
 // Rpi Pico RP2040 SDK:
-// #include <stdio.h> // found already in forth.c
 #include "pico/stdio.h"
 #include <stdlib.h>
 #include "pico/stdlib.h"
 #include "hardware/flash.h"
-// We're going to erase and reprogram a region 256k from the start of flash.
-// Once done, we can access this at XIP_BASE + 256k.
+
 #define FLASH_TARGET_OFFSET (256 * 1024)
 
 const uint8_t *flash_target_contents = (const uint8_t *) (XIP_BASE + FLASH_TARGET_OFFSET);
@@ -29,27 +23,45 @@ void print_buf(const uint8_t *buf, size_t len) {
     }
 }
 
-#define FL_LIMIT_2MB        0x1E8000
-
-CODE(erase) {                    /* adr n -- */
+CODE(erase) { // ( offset -- address bool ) // address only valid if bool returned as true
+    bool debug = -0;
     stdio_init_all();
-    printf("\nErasing target sector...\n");
+    if (debug) printf("\nErasing target sector...\n");
 
-    uint32_t j = (uint32_t) psp[0]; // psp++; // pop?
+    if (debug) printf("\nv.000\n");
 
-    uint32_t k = j - 0x10000000; // remove XIP_BASE to get just the offset
+    uint32_t tos = (uint32_t) psp[0]; psp++; // pop
+    uint32_t tos_cpy;
+    tos_cpy = tos;
+    if (tos_cpy > 0x1FFFFF) {
+        // reject overrange flash addresses
+        if (tos_cpy > 0x101FFFFF) {
+            if (debug) printf("ERROR .. flash address too large\n");
+            --psp; psp[0] = tos_cpy; // push rejected address
+            --psp; psp[0] = 0; // push failure to write flag
+            return;
+        }
 
-    j = k & 0x1FF000; // align to 4096 byte boundaries
-    //      0x1E8000
+        // reject overrange flash offsets
+        if (tos_cpy < 0x10000000) {
+            if (debug) printf("ERROR .. flash offset too large\n");
+            --psp; psp[0] = tos_cpy;
+            --psp; psp[0] = 0;
+            return;
+        }
+    }
 
-    k = j;
-
-    printf("DEBUG: %8X", k); printf("%s", " was number input.\n");
-
-    flash_range_erase(k, FLASH_SECTOR_SIZE);
-
-    printf("Done. Exiting the 'erase' word.\n");
-    // printf("Nothing done - input error.  k too large.\n");
+    uint32_t offset = tos & 0x1FF000;
+    tos = offset + 0x10000000;
+    --psp; psp[0] = tos;
+    if (debug) {
+        printf("DEBUG: offset: %6X with", offset);
+        printf(" %d %s", FLASH_SECTOR_SIZE, "bytes erased at ");
+        printf("%8X\n", tos);
+    }
+    flash_range_erase(offset, FLASH_SECTOR_SIZE);
+    --psp; psp[0] = -1;
+    if (debug) printf("Done. Exiting the 'erase' word.\n");
 }
 
 void flash_write_test(void) {
