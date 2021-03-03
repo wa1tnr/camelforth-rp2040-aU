@@ -675,6 +675,8 @@ CODE(flwrite) { /* -- */
     _pico_LED();
 }
 
+#include "rp2040_reading.inc"
+
 CODE(bye) {
     run = 0;
 }
@@ -777,6 +779,7 @@ PRIMITIVE(blink);
 PRIMITIVE(reflash);
 PRIMITIVE(flwrite);
 PRIMITIVE(erase);
+PRIMITIVE(reading);
 PRIMITIVE(bye);
 
 /* USER VARIABLES */
@@ -1596,5 +1599,6 @@ HEADER(blink, words, 0, "\005blink");
 HEADER(reflash, blink, 0, "\007reflash");
 HEADER(flwrite, reflash, 0, "\007flwrite");
 HEADER(erase, flwrite, 0, "\005erase");
-HEADER(cold, erase, 0, "\004COLD");
+HEADER(reading, erase, 0, "\007reading");
+HEADER(cold, reading, 0, "\004COLD");
 
