@@ -1,0 +1,67 @@
+Thu Mar  4 21:39:02 UTC 2021
+
+ reading ( -- addrs )
+
+ buf2flash ( -- ) mentioned well down the page .. scroll to see it.
+
+ - - -
+
+ reading - Add 1023 bytes to SRAM buffer[1024] by typing, or by ascii
+ upload of a forth source document (or an ASCII text document).
+
+ Stored in SRAM; the address where it was stored is returned to
+ the stack.
+
+ Use 1023 bytes as the length of that document, as seen from
+ your local filesystem.  The 1024th byte is reserved for a
+ null character that 'reading' adds to the end of the buffer.
+
+ Fixed length at 1024 bytes (including the null).
+
+ This is an ode to any string handling requiement that expects
+ to find a null there.  May not be strictly required.
+
+
+ Interpreter reports 'ff OK' when the buffer is full.
+
+
+ During 'reading' and prior to its 'ff OK' prompt (indicating
+ the buffer is full) you may need to pad the buffer with harmless
+ ascii, using:
+
+ ( comments like this )  or by using ASCII 32 (space char) - by
+ simply holding down the space bar in your terminal until you
+ reach 1024 bytes 'typed' (at which point, the 'ff OK' prompt
+ appears).
+
+ Doesn't matter really, what was typed - since the ascii you do
+ enter isn't to be interpreted as forth source - not yet; that's
+ a possible future development.
+
+ However, when you are dumped back to the forth interpreter, you
+ may not expect it, so padding with ASCII 32 chars (holding down
+ the spacebar) won't distrupt the forth interpreter (you won't
+ have to backspace carefully to get rid of 'extra' typed characters
+ that were not (at all) seen by the 'reading' word .. but were (instead)
+ entered into forth's TIB (terminal input buffer).
+
+ There's no separation/boundary.  After the reading word concludes,
+ like any other forth word, the TIB once again becomes active, since
+ 'accept' is once again active.
+
+
+
+ buf2flash ( -- )
+
+ write buffer[1024] to QSPI flashROM (erasing 4096 bytes of flashROM
+ storage as you do so).
+
+ Once buffer[1024] is full, the SRAM buffer created (and populated)
+ may (then) be written, to persistent (QSPI) flashROM, at address
+ 0x10040000 (same address as the SDK's example flash-writing code
+ snippet). 
+
+ That flash address is hard-coded, at the moment (04 March 2021 21:47 UTC).
+
+
+END.
