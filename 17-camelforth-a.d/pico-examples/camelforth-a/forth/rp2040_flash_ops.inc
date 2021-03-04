@@ -1,5 +1,5 @@
 // flash.inc
-// Sat Feb 27 23:45:07 UTC 2021
+// Thu Mar  4 20:18:15 UTC 2021
 
 // designed to be an inline include of forth.c
 
@@ -12,16 +12,6 @@
 #define FLASH_TARGET_OFFSET (256 * 1024)
 
 const uint8_t *flash_target_contents = (const uint8_t *) (XIP_BASE + FLASH_TARGET_OFFSET);
-
-void print_buf(const uint8_t *buf, size_t len) {
-    for (size_t i = 0; i < len; ++i) {
-        printf("%02x", buf[i]);
-        if (i % 16 == 15)
-            printf("\n");
-        else
-            printf(" ");
-    }
-}
 
 CODE(erase) { // ( offset -- address bool ) // address only valid if bool returned as true
     bool debug = -0;
@@ -64,26 +54,56 @@ CODE(erase) { // ( offset -- address bool ) // address only valid if bool return
     if (debug) printf("Done. Exiting the 'erase' word.\n");
 }
 
+
+
+
+void print_buf(const uint8_t *buf, size_t len) {
+    for (size_t i = 0; i < len; ++i) {
+        printf("%02x", buf[i]);
+        if (i % 16 == 15)
+            printf("\n");
+        else
+            printf(" ");
+    }
+}
+
+
 void flash_write_buffer(void) {
     stdio_init_all();
-    uint8_t program_data[FLASH_PAGE_SIZE];
-    for (int i = 0; i < FLASH_PAGE_SIZE; ++i)
-        program_data[i] = buffer[i];
-    print_buf(program_data, FLASH_PAGE_SIZE);
     flash_range_erase(FLASH_TARGET_OFFSET, FLASH_SECTOR_SIZE);
-    print_buf(flash_target_contents, FLASH_PAGE_SIZE);
-    flash_range_program(FLASH_TARGET_OFFSET, program_data, FLASH_PAGE_SIZE);
-    print_buf(flash_target_contents, FLASH_PAGE_SIZE);
 
-        printf("%s", "\n\n FLASH_TARGET_OFFSET: ");
-        printf("%8X", (uint32_t) FLASH_TARGET_OFFSET);
+    uint8_t program_data[FLASH_PAGE_SIZE];
 
-        uint32_t start_address = (uint32_t) XIP_BASE + (uint32_t) FLASH_TARGET_OFFSET ;
+    for (uint8_t offset_b = 0; offset_b <4; offset_b++) {
 
-        printf("%s", "\n\n       start_address: ");
-        printf("%8X", start_address);
+        printf(" DEBUG: assume offset_b: %d\n", offset_b);
 
-        printf("%s", "\n\n");
+        // uint8_t offset_expnd = 256 * offset_b;
+        uint16_t offset_expnd = 256 * offset_b;
+
+        printf(" DEBUG: offset_expnd: %d\n", offset_expnd);
+
+        for (int i = 0; i < FLASH_PAGE_SIZE; ++i)
+            program_data[i] = buffer[(i + offset_expnd)];
+
+        printf("boundary: \n");
+        print_buf(program_data, FLASH_PAGE_SIZE);
+        printf("\n");
+
+        // print_buf(flash_target_contents, FLASH_PAGE_SIZE);
+        flash_range_program((FLASH_TARGET_OFFSET + offset_expnd), program_data, FLASH_PAGE_SIZE);
+        // print_buf(flash_target_contents, FLASH_PAGE_SIZE);
+    } // four pages to write
+
+    printf("%s", "\n\n FLASH_TARGET_OFFSET: ");
+    printf("%8X", (uint32_t) FLASH_TARGET_OFFSET);
+
+    uint32_t start_address = (uint32_t) XIP_BASE + (uint32_t) FLASH_TARGET_OFFSET ;
+
+    printf("%s", "\n\n       start_address: ");
+    printf("%8X", start_address);
+
+    printf("%s", "\n\n");
 }
 
 void flash_write_test(void) {
