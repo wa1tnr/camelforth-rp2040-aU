@@ -671,7 +671,6 @@ CODE(dump) {   /* adr n -- */
 
 // #include "rp2040_runtime.inc"
 #include "rp2040_reflash.inc"
-#include "rp2040_flash_ops.inc"
 
 extern void flash_write_test(void);
 CODE(flwrite) { /* -- */
@@ -680,6 +679,22 @@ CODE(flwrite) { /* -- */
 }
 
 #include "rp2040_reading.inc"
+#include "rp2040_flash_ops.inc"
+/*
+  1 // rp2040_reading.inc
+
+  7 #define READING_SIZE 1024
+
+  9 char buffer[READING_SIZE];
+*/
+
+
+extern void flash_write_buffer(void);
+CODE(buf2flash) { /* -- */
+    flash_write_buffer();
+    _pico_LED();
+}
+
 
 CODE(bye) {
     run = 0;
@@ -782,6 +797,7 @@ PRIMITIVE(blink);
 // PRIMITIVE(runtime_init);
 PRIMITIVE(reflash);
 PRIMITIVE(flwrite);
+PRIMITIVE(buf2flash);
 PRIMITIVE(erase);
 PRIMITIVE(reading);
 PRIMITIVE(bye);
@@ -1618,7 +1634,8 @@ HEADER(words, dump, 0, "\005WORDS");
 HEADER(blink, words, 0, "\005blink");
 HEADER(reflash, blink, 0, "\007reflash");
 HEADER(flwrite, reflash, 0, "\007flwrite");
-HEADER(erase, flwrite, 0, "\005erase");
+HEADER(buf2flash, flwrite, 0, "\011buf2flash");
+HEADER(erase, buf2flash, 0, "\005erase");
 HEADER(reading, erase, 0, "\007reading");
 HEADER(flaccept, reading, 0, "\010FLACCEPT");
 HEADER(flquit, flaccept, 0, "\006FLQUIT");

@@ -64,6 +64,28 @@ CODE(erase) { // ( offset -- address bool ) // address only valid if bool return
     if (debug) printf("Done. Exiting the 'erase' word.\n");
 }
 
+void flash_write_buffer(void) {
+    stdio_init_all();
+    uint8_t program_data[FLASH_PAGE_SIZE];
+    for (int i = 0; i < FLASH_PAGE_SIZE; ++i)
+        program_data[i] = buffer[i];
+    print_buf(program_data, FLASH_PAGE_SIZE);
+    flash_range_erase(FLASH_TARGET_OFFSET, FLASH_SECTOR_SIZE);
+    print_buf(flash_target_contents, FLASH_PAGE_SIZE);
+    flash_range_program(FLASH_TARGET_OFFSET, program_data, FLASH_PAGE_SIZE);
+    print_buf(flash_target_contents, FLASH_PAGE_SIZE);
+
+        printf("%s", "\n\n FLASH_TARGET_OFFSET: ");
+        printf("%8X", (uint32_t) FLASH_TARGET_OFFSET);
+
+        uint32_t start_address = (uint32_t) XIP_BASE + (uint32_t) FLASH_TARGET_OFFSET ;
+
+        printf("%s", "\n\n       start_address: ");
+        printf("%8X", start_address);
+
+        printf("%s", "\n\n");
+}
+
 void flash_write_test(void) {
     stdio_init_all();
     uint8_t random_data[FLASH_PAGE_SIZE];
