@@ -1,12 +1,14 @@
-#define DATE_STAMP "Sun Feb 28 03:49:59 UTC 2021"
-#define BRANCH_STAMP "erase_sector-a"
-#define COMMIT_STAMP "39bcf3f"
+#define DATE_STAMP "Thu Mar  4 14:14:25 UTC 2021"
+// old standard width for this field: #define BRANCH_STAMP "erase_sector-a"
+#define BRANCH_STAMP "erase_sector-a-rdng-flacc-a"
+#define COMMIT_STAMP "f67a13f"
 // #define MODE_STAMP "copy_to_ram"
-#define MODE_STAMP "copy_to_ram"
+// #define MODE_STAMP "copy_to_ram"
 // #define MODE_STAMP "no_flash   "
-// #define MODE_STAMP "no_flash   "
+#define MODE_STAMP "no_flash   "
 #define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - " DATE_STAMP "  ");
-#define DOFILLS_datus ("\200\n\n +flwrite +erase " DATE_STAMP " \n branch " BRANCH_STAMP " " COMMIT_STAMP " UNDER TEST    \n " MODE_STAMP " mode\n\n            ");
+// old count reasonable branch stamp: #define DOFILLS_datus ("\200\n\n +flwrite +erase " DATE_STAMP " \n branch " BRANCH_STAMP " " COMMIT_STAMP " UNDER TEST    \n " MODE_STAMP " mode\n\n            ");
+#define DOFILLS_datus ("\200\n\n +flwrite +erase " DATE_STAMP " \n branch " BRANCH_STAMP " " COMMIT_STAMP " UNDER TEST   \n " MODE_STAMP " mode\n\n");
 // special attempt: make some pointerish things more robust by superstitiously using 'volatile' all over the place ;)
 // surprisingly, all these changes in this commit do compile cleanly.
 /****h* camelforth/forth.c
@@ -64,6 +66,8 @@
 /*
  * DATA STACKS
  * stacks grow downward to allow positive index from psp,rsp
+ *
+ * local tnr: drop is psp++
  */
 
 unsigned int pstack[PSTACKSIZE];    /* grows down from end */
@@ -956,11 +960,20 @@ THREAD(spaces) = { Fenter, Tdup, Tqbranch, OFFSET(5), Tspace, Toneminus,
 #define BACKSPACE 8         /* key returned for backspace */
 #define BACKUP  8           /* what to emit for backspace */
 #endif
-                
+
 THREAD(accept) = { Fenter, Tover, Tplus, Toneminus, Tover,
 /* 1 */  Tkey, Tdup, Tlit, LIT(NEWLINE), Tnotequal, Tqbranch, OFFSET(27 /*5*/),
          Tdup, Tlit, LIT(BACKSPACE), Tequal, Tqbranch, OFFSET(12 /*3*/),
          Tdrop, Tlit, LIT(BACKUP), Temit, Toneminus, Ttor, Tover, Trfrom, 
+         Tumax, Tbranch, OFFSET(8 /*4*/),
+/* 3 */  Tdup, Temit, Tover, Tcstore, Toneplus, Tover, Tumin,
+/* 4 */  Tbranch, OFFSET(-32 /*1*/),
+/* 5 */  Tdrop, Tnip, Tswap, Tminus, Texit };
+
+THREAD(flaccept) = { Fenter, Tover, Tplus, Toneminus, Tover,
+/* 1 */  Tkey, Tdup, Tlit, LIT(NEWLINE), Tnotequal, Tqbranch, OFFSET(27 /*5*/),
+         Tdup, Tlit, LIT(BACKSPACE), Tequal, Tqbranch, OFFSET(12 /*3*/),
+         Tdrop, Tlit, LIT(BACKUP), Temit, Toneminus, Ttor, Tover, Trfrom,
          Tumax, Tbranch, OFFSET(8 /*4*/),
 /* 3 */  Tdup, Temit, Tover, Tcstore, Toneplus, Tover, Tumin,
 /* 4 */  Tbranch, OFFSET(-32 /*1*/),
@@ -1116,6 +1129,13 @@ THREAD(evaluate) = { Fenter, Tticksource, Ttwofetch, Ttor, Ttor,
 char okprompt[] = "\003ok ";
 
 THREAD(quit) = { Fenter, Tl0, Tlp, Tstore,
+        Tr0, Trpstore, Tzero, Tstate, Tstore,
+ /*1*/  Ttib, Tdup, Ttibsize, Taccept, Tspace, Tinterpret,
+        Tcr, Tstate, Tfetch, Tzeroequal, Tqbranch, OFFSET(5 /*2*/),
+        Tlit, okprompt, Ticount, Titype,
+ /*2*/  Tbranch, OFFSET(-17 /*1*/) };     // never exits
+
+THREAD(flquit) = { Fenter, Tl0, Tlp, Tstore,
         Tr0, Trpstore, Tzero, Tstate, Tstore,
  /*1*/  Ttib, Tdup, Ttibsize, Taccept, Tspace, Tinterpret,
         Tcr, Tstate, Tfetch, Tzeroequal, Tqbranch, OFFSET(5 /*2*/),
@@ -1600,5 +1620,7 @@ HEADER(reflash, blink, 0, "\007reflash");
 HEADER(flwrite, reflash, 0, "\007flwrite");
 HEADER(erase, flwrite, 0, "\005erase");
 HEADER(reading, erase, 0, "\007reading");
-HEADER(cold, reading, 0, "\004COLD");
+HEADER(flaccept, reading, 0, "\010FLACCEPT");
+HEADER(flquit, flaccept, 0, "\006FLQUIT");
+HEADER(cold, flquit, 0, "\004COLD");
 
