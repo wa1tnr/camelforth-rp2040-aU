@@ -704,6 +704,9 @@ CODE(buf2flash) { /* -- */
     _pico_LED();
 }
 
+CODE(rewind) { // reset flash loader to the base of that sector
+    getFlKey_counter = 0;
+}
 
 CODE(bye) {
     run = 0;
@@ -808,6 +811,7 @@ PRIMITIVE(blink);
 PRIMITIVE(reflash);
 PRIMITIVE(flwrite);
 PRIMITIVE(buf2flash);
+PRIMITIVE(rewind);
 PRIMITIVE(erase);
 PRIMITIVE(reading);
 PRIMITIVE(bye);
@@ -1683,8 +1687,8 @@ HEADER(flwrite, reflash, 0, "\007flwrite");
 HEADER(buf2flash, flwrite, 0, "\011buf2flash");
 HEADER(erase, buf2flash, 0, "\005erase");
 HEADER(reading, erase, 0, "\007reading");
-HEADER(flkey, reading, 0, "\005flkey");
+HEADER(rewind, reading, 0, "\006rewind");
+HEADER(flkey, rewind, 0, "\005flkey");
 HEADER(flaccept, flkey, 0, "\010flaccept");
 HEADER(flquit, flaccept, 0, "\006flquit");
 HEADER(cold, flquit, 0, "\004COLD");
-
