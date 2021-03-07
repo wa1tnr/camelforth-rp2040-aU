@@ -1,4 +1,4 @@
-#define DATE_STAMP "Sun Mar  7 17:28:59 UTC 2021"
+#define DATE_STAMP "Sun Mar  7 18:07:33 UTC 2021"
 // old standard width for this field: #define BRANCH_STAMP "erase_sector-a"
 #define BRANCH_STAMP "buffer-to-flash-b        __"
 #define COMMIT_STAMP "705a148"
@@ -613,8 +613,8 @@ CODE(key) {
 }
 
 CODE(flkey) {
-    // *--psp = (unsigned int)getch();
-    *--psp = (uint8_t)getch();
+    // *--psp = (uint8_t)getch();
+    *--psp = (uint8_t)getFlKey(); // MAJOR_CHANGE tnr
 }
 
 CODE(emit) {
