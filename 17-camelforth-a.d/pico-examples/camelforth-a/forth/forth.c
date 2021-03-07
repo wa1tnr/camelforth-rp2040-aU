@@ -1,14 +1,15 @@
-#define DATE_STAMP "Sun Mar  7 19:59:46 UTC 2021"
+#define DATE_STAMP "Sun Mar  7 20:40:02 UTC 2021"
 // old standard width for this field: #define BRANCH_STAMP "erase_sector-a"
-#define BRANCH_STAMP "buffer-to-flash-b        __"
-#define COMMIT_STAMP "705a148"
+#define BRANCH_STAMP  "buffer-to-flash-b        __"
+#define COMMIT_STAMP  "1d0614b"
+#define FEATURE_STAMP "+flaccept +flwrite +erase "
 // #define MODE_STAMP "copy_to_ram"
 // #define MODE_STAMP "copy_to_ram"
 // #define MODE_STAMP "no_flash   "
 #define MODE_STAMP "no_flash   "
 #define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - " DATE_STAMP "  ");
 // old count reasonable branch stamp: #define DOFILLS_datus ("\200\n\n +flwrite +erase " DATE_STAMP " \n branch " BRANCH_STAMP " " COMMIT_STAMP " UNDER TEST    \n " MODE_STAMP " mode\n\n            ");
-#define DOFILLS_datus ("\200\n\n +flwrite +erase " DATE_STAMP " \n branch " BRANCH_STAMP " " COMMIT_STAMP " UNDER TEST   \n " MODE_STAMP " mode\n\n");
+#define DOFILLS_datus ("\212\n\n " FEATURE_STAMP DATE_STAMP " \n branch " BRANCH_STAMP " " COMMIT_STAMP " UNDER TEST   \n " MODE_STAMP " mode\n\n");
 // special attempt: make some pointerish things more robust by superstitiously using 'volatile' all over the place ;)
 // surprisingly, all these changes in this commit do compile cleanly.
 /****h* camelforth/forth.c
@@ -1183,7 +1184,7 @@ THREAD(flaccept) = { Fenter, Tover, Tplus, Toneminus, Tover,
 /* 3 */  Tdup, Temit, Tover, Tcstore, Toneplus, Tover, Tumin,
 /* 4 */  Tbranch, OFFSET(-38 /*1*/), /* was -32 */
 /* 5 */  Tdrop, Tnip, Tswap, Tminus, Texit,
-/* 6 */  Tquit };
+/* 6 */  Tdrop, Tdrop, Tquit };
 
 
 
