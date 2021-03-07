@@ -1,4 +1,4 @@
-#define DATE_STAMP "Sun Mar  7 18:07:33 UTC 2021"
+#define DATE_STAMP "Sun Mar  7 19:59:46 UTC 2021"
 // old standard width for this field: #define BRANCH_STAMP "erase_sector-a"
 #define BRANCH_STAMP "buffer-to-flash-b        __"
 #define COMMIT_STAMP "705a148"
@@ -998,20 +998,25 @@ THREAD(accept) = { Fenter, Tover, Tplus, Toneminus, Tover,
 extern void * Tabort[];   /* forward reference */
 
 THREAD(flaccept) = { Fenter, Tover, Tplus, Toneminus, Tover,
-/* 1 */  Tflkey, Tdup, Tlit, LIT(NEWLINE), Tnotequal, Tqbranch, OFFSET(32 /*5*/), /* was 27 */
+/* 1 */  Tflkey, Tdup, Tlit, LIT(NEWLINE), Tnotequal, Tqbranch, OFFSET(33 /*5*/), /* was 27 */
 
-         Tdup, Tlit, LIT(0x0), Tequal, Tabort,
+         Tdup,
+         Tlit,
+         LIT(0x0),
+         Tequal,
+         Tqbranch,
+         OFFSET(32 /*6*/),
 
 /* okay so the mechanism is that flabort begins right after boot - when a 0x00 char is
-   encountered in flash, call Tabort (Texit seems subroutine oriented, Tabort seems
+   encountered in flash call Tabort (Texit seems subroutine oriented Tabort seems
    more do-over oriented. EXPERIMENTAL! */
 
          Tdup, Tlit, LIT(BACKSPACE), Tequal, Tqbranch, OFFSET(12 /*3*/),
          Tdrop, Tlit, LIT(BACKUP), Temit, Toneminus, Ttor, Tover, Trfrom,
          Tumax, Tbranch, OFFSET(8 /*4*/),
 /* 3 */  Tdup, Temit, Tover, Tcstore, Toneplus, Tover, Tumin,
-/* 4 */  Tbranch, OFFSET(-37 /*1*/), /* was -32 */
-/* 5 */  Tdrop, Tnip, Tswap, Tminus, Texit };
+/* 4 */  Tbranch, OFFSET(-38 /*1*/), /* was -32 */
+/* 5 */  Tdrop, Tnip, Tswap, Tminus, Texit, Tabort };
 
 THREAD(type) = { Fenter, Tqdup, Tqbranch, OFFSET(12 /*4*/),
          Tover, Tplus, Tswap, Txdo,
