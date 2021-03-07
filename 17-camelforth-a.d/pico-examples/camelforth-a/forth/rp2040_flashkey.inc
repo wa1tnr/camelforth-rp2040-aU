@@ -1,9 +1,14 @@
+// Sun Mar  7 16:57:29 UTC 2021
 #include "rp2040_pico.h"
 #include "pico/stdlib.h"
+#define FL_KEY_BASE 0x10040000 // same as example code SDK
 
-uint8_t getKey(void) {     // hardware-independent wrapper
+// uint32_t getFlKey_counter = 0;
+
+uint8_t getFlKey(void) {     // hardware-independent wrapper
     uint8_t ch_read;
     int count=0;
+    // uint32_t getFlKey_counter = 0;
     int flip, flop;
     const uint LED_PIN = 25;
     flip=-1;
@@ -26,9 +31,8 @@ uint8_t getKey(void) {     // hardware-independent wrapper
         }
         ch_read = getchar_timeout_us(18); // 4 tries per 87 uSec char window at 115200 bps
     } while ((ch_read == '\0') || (ch_read == 0xff));
+    getFlKey_counter++;
     return ch_read;
 }
 
-void queryKey(void) {
-    // TODO wa1tnr
-}
+// END.
