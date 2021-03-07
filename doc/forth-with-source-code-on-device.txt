@@ -68,3 +68,144 @@ in 'COLD'.
 It is entirely untested what happens if you make an error in the
 proper population of 0x10040000 on-device program source code storage.
 
+The rewind word
+
+The rewind word resets the pointer back to 0x10040000 and is called
+by you, manually, after a successful cold boot.
+
+A call, from you, to COLD without a 'rewind' first will cause it to
+go off the end of the map (into uninitialized flashROM space just
+past where code was loaded in from, the last time it ran COLD (which
+it does every power cycle).
+
+This is just day one in development - rewind could easily be called
+by your flashROM program, perhaps?  If not there, certainly it could
+be placed in the C source code used to compile this forth, in an
+opportune spot. ;)
+
+The several Tdrop calls in flaccept are an artifact of not quite
+understanding the program, as modified.
+
+THREAD(flaccept)
+
+1174          Tdup,
+1175          Tlit,
+1176          LIT(0x0),
+1177          Tnotequal,
+1178          Tqbranch,
+1179          OFFSET(32 /*6*/),
+
+1191 /* 6 */  Tdrop, Tdrop, Tdrop, Tdrop, Tquit };
+
+Those Tdrops are extraneous (they can be omitted, if you don't
+mind cleaning up your stack after you get your 'ok' prompt).
+
+Not sure where the stack elements are coming from; best
+guess at this time is due to the fact that TIB (terminal
+input buffer) isn't quite accounted for.
+
+The approach was to just 'try it and see' and 'since it works
+now' it seemed simple enough to just go ahead and drop drop
+drop drop and be done with it, for the moment. ;)
+
+
+Consider:
+
+1203 THREAD(flquit) = { Fenter, Tl0, Tlp, Tstore,
+1204         Tr0, Trpstore, Tzero, Tstate, Tstore,
+1205  /*1*/  Ttib, Tdup, Ttibsize, Tflaccept, Tspace, Tinterpret,
+1206         Tcr, Tstate, Tfetch, Tzeroequal, Tqbranch, OFFSET(5 /*2*/),
+1207         Tlit, okprompt, Ticount, Titype,
+1208  /*2*/  Tbranch, OFFSET(-17 /*1*/) };     // never exits
+1209 
+1210 THREAD(abort) = { Fenter, Ts0, Tspstore, Tquit };
+1211 THREAD(flabort) = { Fenter, Ts0, Tspstore, Tflquit };
+
+So, there, Ttib is part of 'flquit' which is in this chain (just
+making up a word there, 'chain' to describe a chained series of
+events, common english use of 'chaining' not something technical).
+
+Here's a fuller trace:
+
+1373 THREAD(cold) = { Fenter,
+1374     Tuinit, Tu0, Tninit, Titod,     /* important initialization! */
+1375     Tlit, coldprompt, Tcount, Ttype, Tcr,
+1376     Tflabort, };                      /* Tabort never exits */
+
+Note that Tflabort is non-standard and is one important point-of-entry.
+
+1210 THREAD(abort) = { Fenter, Ts0, Tspstore, Tquit };
+1211 THREAD(flabort) = { Fenter, Ts0, Tspstore, Tflquit };
+
+abort and flabort both shown for comparison; in this trace,
+it's flabort only.  Note how it ends with the call to
+the Tflquit thread.
+
+1203 THREAD(flquit) = { Fenter, Tl0, Tlp, Tstore,
+1204         Tr0, Trpstore, Tzero, Tstate, Tstore,
+1205  /*1*/  Ttib, Tdup, Ttibsize, Tflaccept, Tspace, Tinterpret,
+1206         Tcr, Tstate, Tfetch, Tzeroequal, Tqbranch, OFFSET(5 /*2*/),
+1207         Tlit, okprompt, Ticount, Titype,
+1208  /*2*/  Tbranch, OFFSET(-17 /*1*/) };     // never exits
+
+Tflquit does various things (not all of which are currently
+understood by this author).  Makes use of 'tib' in some manner
+(the terminal input buffer).  TIB's address is found on the
+stack when flabort (in COLD) has completed, so it's indicated
+as a source of this stray data on the stack.
+
+For this trace, however, attention is brought to Tflaccept, as
+this is another entry point (and was designed earlier than the
+modification of COLD - which was a more recent advent).
+
+Essentially it's does this, does that .. calls Tflaccept, which
+is the interesting part:
+
+
+1171 THREAD(flaccept) = { Fenter, Tover, Tplus, Toneminus, Tover,
+1172 /* 1 */  Tflkey, Tdup, Tlit, LIT(NEWLINE), Tnotequal, Tqbranch, OFFSET(33 /*5*/), /* was 27 */
+
+1174          Tdup,
+1175          Tlit,
+1176          LIT(0x0),
+1177          Tnotequal,
+1178          Tqbranch,
+1179          OFFSET(32 /*6*/),
+
+1181 /* okay so the mechanism is that flabort begins right after boot - when a 0x00 char is
+1182    encountered in flash call Tabort (Texit seems subroutine oriented Tabort seems
+1183    more do-over oriented. EXPERIMENTAL! */
+
+1185          Tdup, Tlit, LIT(BACKSPACE), Tequal, Tqbranch, OFFSET(12 /*3*/),
+1186          Tdrop, Tlit, LIT(BACKUP), Temit, Toneminus, Ttor, Tover, Trfrom,
+1187          Tumax, Tbranch, OFFSET(8 /*4*/),
+1188 /* 3 */  Tdup, Temit, Tover, Tcstore, Toneplus, Tover, Tumin,
+1189 /* 4 */  Tbranch, OFFSET(-38 /*1*/), /* was -32 */
+1190 /* 5 */  Tdrop, Tnip, Tswap, Tminus, Texit,
+1191 /* 6 */  Tdrop, Tdrop, Tdrop, Tdrop, Tquit };
+
+That's where the test for a NULL (0x0) happens - in Tflaccept.
+Tflaccept is also what calls the (external) Tflkey, which is
+intended as a simple replacement for typing at the console,
+by supplying the characters to be typed, from QSPI flashROM
+address space. ;)
+
+It worked!
+
+And still works.
+
+So, perhaps a modification of Tflquit is in order, to remove those
+pesky extra stack elements with the program has finished booting
+and loading source code from QSPI flashROM.
+
+Not sure what role TIB plays when player-piano is going on.  Had
+originally planned to populate TIB and use that as the very
+mechanism to feed source code to the (properly authored, upstream
+author's version of) the Interpreter.
+
+A lot of this was intuitive and difficult to simulaneously think
+it through, and perform the actions to get it to realization.
+
+The latter route was chosen, and led to what is now before us. ;)
+
+
