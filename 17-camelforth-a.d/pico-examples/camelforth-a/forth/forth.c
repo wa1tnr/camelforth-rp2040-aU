@@ -1,7 +1,7 @@
-#define DATE_STAMP "Sun Mar  7 16:38:54 UTC 2021"
+#define DATE_STAMP "Sun Mar  7 17:28:59 UTC 2021"
 // old standard width for this field: #define BRANCH_STAMP "erase_sector-a"
 #define BRANCH_STAMP "buffer-to-flash-b        __"
-#define COMMIT_STAMP "9eb30bf"
+#define COMMIT_STAMP "705a148"
 // #define MODE_STAMP "copy_to_ram"
 // #define MODE_STAMP "copy_to_ram"
 // #define MODE_STAMP "no_flash   "
@@ -62,6 +62,9 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "forth.h"
+
+/* not sure where this goes 07 Mar 2021 tnr */
+uint32_t getFlKey_counter = 0;
 
 /*
  * DATA STACKS
@@ -609,6 +612,11 @@ CODE(key) {
     *--psp = (uint8_t)getch();
 }
 
+CODE(flkey) {
+    // *--psp = (unsigned int)getch();
+    *--psp = (uint8_t)getch();
+}
+
 CODE(emit) {
     putch((char)*psp++);
 }
@@ -786,6 +794,7 @@ PRIMITIVE(sequal);
 THREAD(nequal) = { Fsequal };  /* synonym */
     
 PRIMITIVE(key);
+PRIMITIVE(flkey);
 PRIMITIVE(emit);
 PRIMITIVE(keyq);
 // PRIMITIVE(dot);
@@ -987,7 +996,7 @@ THREAD(accept) = { Fenter, Tover, Tplus, Toneminus, Tover,
 /* 5 */  Tdrop, Tnip, Tswap, Tminus, Texit };
 
 THREAD(flaccept) = { Fenter, Tover, Tplus, Toneminus, Tover,
-/* 1 */  Tkey, Tdup, Tlit, LIT(NEWLINE), Tnotequal, Tqbranch, OFFSET(27 /*5*/),
+/* 1 */  Tflkey, Tdup, Tlit, LIT(NEWLINE), Tnotequal, Tqbranch, OFFSET(27 /*5*/),
          Tdup, Tlit, LIT(BACKSPACE), Tequal, Tqbranch, OFFSET(12 /*3*/),
          Tdrop, Tlit, LIT(BACKUP), Temit, Toneminus, Ttor, Tover, Trfrom,
          Tumax, Tbranch, OFFSET(8 /*4*/),
@@ -1153,12 +1162,13 @@ THREAD(quit) = { Fenter, Tl0, Tlp, Tstore,
 
 THREAD(flquit) = { Fenter, Tl0, Tlp, Tstore,
         Tr0, Trpstore, Tzero, Tstate, Tstore,
- /*1*/  Ttib, Tdup, Ttibsize, Taccept, Tspace, Tinterpret,
+ /*1*/  Ttib, Tdup, Ttibsize, Tflaccept, Tspace, Tinterpret,
         Tcr, Tstate, Tfetch, Tzeroequal, Tqbranch, OFFSET(5 /*2*/),
         Tlit, okprompt, Ticount, Titype,
  /*2*/  Tbranch, OFFSET(-17 /*1*/) };     // never exits
 
-THREAD(abort) = { Fenter, Ts0, Tspstore, Tquit };
+// THREAD(abort) = { Fenter, Ts0, Tspstore, Tquit };
+THREAD(abort) = { Fenter, Ts0, Tspstore, Tflquit };
 
 THREAD(qabort) = { Fenter, Trot, Tqbranch, OFFSET(3), Titype, Tabort,
                    Ttwodrop, Texit };
@@ -1637,7 +1647,8 @@ HEADER(flwrite, reflash, 0, "\007flwrite");
 HEADER(buf2flash, flwrite, 0, "\011buf2flash");
 HEADER(erase, buf2flash, 0, "\005erase");
 HEADER(reading, erase, 0, "\007reading");
-HEADER(flaccept, reading, 0, "\010FLACCEPT");
-HEADER(flquit, flaccept, 0, "\006FLQUIT");
+HEADER(flkey, reading, 0, "\005flkey");
+HEADER(flaccept, flkey, 0, "\010flaccept");
+HEADER(flquit, flaccept, 0, "\006flquit");
 HEADER(cold, flquit, 0, "\004COLD");
 
