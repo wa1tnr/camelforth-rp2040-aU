@@ -9,14 +9,15 @@ uint8_t acquire_flash_char() {
     char *rom;
     int p = ((int) 0x10040000 + (int) getFlKey_counter) ;
     rom = (char *) p;
-    printf("   %4X: ", p); // start address
+    printf("            %4X: ", p); // start address
     char char_read = *rom;
-    printf(" %02X",  (char_read & 0xff));
+    printf("%02X",  (char_read & 0xff));
     int qq = 0;
     for (volatile uint32_t i = 0x1FFFFF; i>0; i--) {
         qq++;
         // statement
     }
+    qq = 0x20;
     printf(" %8X ", qq); // trick compiler into thinking qq is useful
     return (uint8_t) (char_read & 0xff);
 }
