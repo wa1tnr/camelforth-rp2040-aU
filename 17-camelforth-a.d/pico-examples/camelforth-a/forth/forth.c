@@ -995,28 +995,13 @@ THREAD(accept) = { Fenter, Tover, Tplus, Toneminus, Tover,
 /* 4 */  Tbranch, OFFSET(-32 /*1*/),
 /* 5 */  Tdrop, Tnip, Tswap, Tminus, Texit };
 
-extern void * Tabort[];   /* forward reference */
 
-THREAD(flaccept) = { Fenter, Tover, Tplus, Toneminus, Tover,
-/* 1 */  Tflkey, Tdup, Tlit, LIT(NEWLINE), Tnotequal, Tqbranch, OFFSET(33 /*5*/), /* was 27 */
 
-         Tdup,
-         Tlit,
-         LIT(0x0),
-         Tequal,
-         Tqbranch,
-         OFFSET(32 /*6*/),
 
-/* okay so the mechanism is that flabort begins right after boot - when a 0x00 char is
-   encountered in flash call Tabort (Texit seems subroutine oriented Tabort seems
-   more do-over oriented. EXPERIMENTAL! */
 
-         Tdup, Tlit, LIT(BACKSPACE), Tequal, Tqbranch, OFFSET(12 /*3*/),
-         Tdrop, Tlit, LIT(BACKUP), Temit, Toneminus, Ttor, Tover, Trfrom,
-         Tumax, Tbranch, OFFSET(8 /*4*/),
-/* 3 */  Tdup, Temit, Tover, Tcstore, Toneplus, Tover, Tumin,
-/* 4 */  Tbranch, OFFSET(-38 /*1*/), /* was -32 */
-/* 5 */  Tdrop, Tnip, Tswap, Tminus, Texit, Tabort };
+
+
+
 
 THREAD(type) = { Fenter, Tqdup, Tqbranch, OFFSET(12 /*4*/),
          Tover, Tplus, Tswap, Txdo,
@@ -1143,6 +1128,8 @@ THREAD(qnumber) = { Fenter, Tdup, Tzero, Tdup, Trot, Tcount,
 // extern const void * Tabort[];   /* forward reference */
 extern void * Tflabort[];   /* forward reference */
 
+extern void * Tabort[];   /* forward reference */
+
 THREAD(interpret) = { Fenter,   
         Tticksource, Ttwostore, Tzero, Ttoin, Tstore,
  /*1*/  Tbl, Tword, Tdup, Tcfetch, Tqbranch, OFFSET(33 /*9*/),
@@ -1173,6 +1160,39 @@ THREAD(quit) = { Fenter, Tl0, Tlp, Tstore,
         Tcr, Tstate, Tfetch, Tzeroequal, Tqbranch, OFFSET(5 /*2*/),
         Tlit, okprompt, Ticount, Titype,
  /*2*/  Tbranch, OFFSET(-17 /*1*/) };     // never exits
+
+// target zone
+
+THREAD(flaccept) = { Fenter, Tover, Tplus, Toneminus, Tover,
+/* 1 */  Tflkey, Tdup, Tlit, LIT(NEWLINE), Tnotequal, Tqbranch, OFFSET(33 /*5*/), /* was 27 */
+
+         Tdup,
+         Tlit,
+         LIT(0x0),
+         Tnotequal,
+         Tqbranch,
+         OFFSET(32 /*6*/),
+
+/* okay so the mechanism is that flabort begins right after boot - when a 0x00 char is
+   encountered in flash call Tabort (Texit seems subroutine oriented Tabort seems
+   more do-over oriented. EXPERIMENTAL! */
+
+         Tdup, Tlit, LIT(BACKSPACE), Tequal, Tqbranch, OFFSET(12 /*3*/),
+         Tdrop, Tlit, LIT(BACKUP), Temit, Toneminus, Ttor, Tover, Trfrom,
+         Tumax, Tbranch, OFFSET(8 /*4*/),
+/* 3 */  Tdup, Temit, Tover, Tcstore, Toneplus, Tover, Tumin,
+/* 4 */  Tbranch, OFFSET(-38 /*1*/), /* was -32 */
+/* 5 */  Tdrop, Tnip, Tswap, Tminus, Texit,
+/* 6 */  Tquit };
+
+
+
+
+
+
+
+
+
 
 THREAD(flquit) = { Fenter, Tl0, Tlp, Tstore,
         Tr0, Trpstore, Tzero, Tstate, Tstore,
