@@ -1,11 +1,11 @@
-#define DATE_STAMP "Thu Mar  4 20:39:05 UTC 2021"
+#define DATE_STAMP "Sun Mar  7 16:38:54 UTC 2021"
 // old standard width for this field: #define BRANCH_STAMP "erase_sector-a"
-#define BRANCH_STAMP "erase_sector-a-rdng-flacc-a"
-#define COMMIT_STAMP "09d44a1"
+#define BRANCH_STAMP "buffer-to-flash-b        __"
+#define COMMIT_STAMP "9eb30bf"
 // #define MODE_STAMP "copy_to_ram"
-#define MODE_STAMP "copy_to_ram"
+// #define MODE_STAMP "copy_to_ram"
 // #define MODE_STAMP "no_flash   "
-// #define MODE_STAMP "no_flash   "
+#define MODE_STAMP "no_flash   "
 #define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - " DATE_STAMP "  ");
 // old count reasonable branch stamp: #define DOFILLS_datus ("\200\n\n +flwrite +erase " DATE_STAMP " \n branch " BRANCH_STAMP " " COMMIT_STAMP " UNDER TEST    \n " MODE_STAMP " mode\n\n            ");
 #define DOFILLS_datus ("\200\n\n +flwrite +erase " DATE_STAMP " \n branch " BRANCH_STAMP " " COMMIT_STAMP " UNDER TEST   \n " MODE_STAMP " mode\n\n");

@@ -1,5 +1,5 @@
 // flash.inc
-// Thu Mar  4 20:18:15 UTC 2021
+// Sun Mar  7 16:38:54 UTC 2021
 
 // designed to be an inline include of forth.c
 
@@ -10,6 +10,18 @@
 #include "hardware/flash.h"
 
 #define FLASH_TARGET_OFFSET (256 * 1024)
+
+// swap these two:
+#define FEATHER_RP2040
+#undef FEATHER_RP2040
+
+#ifdef FEATHER_RP2040
+#define FLASH_LIMIT 0x7FFFFF
+#define FLASH_MASK  0x7FF000
+#else
+#define FLASH_LIMIT 0x1FFFFF
+#define FLASH_MASK  0x1FF000
+#endif
 
 const uint8_t *flash_target_contents = (const uint8_t *) (XIP_BASE + FLASH_TARGET_OFFSET);
 
@@ -23,9 +35,10 @@ CODE(erase) { // ( offset -- address bool ) // address only valid if bool return
     uint32_t tos = (uint32_t) psp[0]; psp++; // pop
     uint32_t tos_cpy;
     tos_cpy = tos;
-    if (tos_cpy > 0x1FFFFF) {
+    // if (tos_cpy > 0x1FFFFF) {
+    if (tos_cpy > FLASH_LIMIT) {
         // reject overrange flash addresses
-        if (tos_cpy > 0x101FFFFF) {
+        if (tos_cpy > (FLASH_LIMIT + 0x10000000)) {
             if (debug) printf("ERROR .. flash address too large\n");
             --psp; psp[0] = tos_cpy; // push rejected address
             --psp; psp[0] = 0; // push failure to write flag
@@ -41,7 +54,7 @@ CODE(erase) { // ( offset -- address bool ) // address only valid if bool return
         }
     }
 
-    uint32_t offset = tos & 0x1FF000;
+    uint32_t offset = tos & FLASH_MASK ;
     tos = offset + 0x10000000;
     --psp; psp[0] = tos;
     if (debug) {
