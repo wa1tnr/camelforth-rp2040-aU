@@ -1,0 +1,70 @@
+commit 6c17263926fbb5f2a31903e42a242833bb4a683e
+Date:   Sun Mar  7 21:37:41 UTC 2021
+
+On branch buffer-to-flash-c
+
+The recommendation for a smooth introduction, is as follows:
+
+Generate your flashROM (source code) image (stored on the
+device, in ascii plaintext - a forth program) using some
+earlier variant of this CamelForth.
+
+Your program will be resident at 0x1004000 and will survive
+a power cycle boot (true cold start).  That is to say, it'll
+be stored in non-volatile QSPI flashROM at the mentioned
+address (again 0x10040000).
+
+Could be something as simple as:
+
+: hello ." Hello there. " ;
+
+The program looks for a NULL (ASCII 0x0, a zero) stored
+in flash, after 0x0A (line ending as usual).
+
+That's how it finds the end of your program (max 1023 bytes).
+
+If it sees the null it'll return to the interactive ok
+prompt, at it then believes the entire stored program
+from flash has been read in, and interpreted, and compiled
+when asked (colon definitons or anything else you can do
+by typing interactively).
+
+This is a very close model on the original interpreter,
+and it is meant to exhibit the very same behavior as
+the interpreter does (including compiling colon definitions).
+
+The call to 'Tflabort' in COLD is what's causing the
+program to auto-execute on a cold boot.
+
+Change this to 'Tabort' to suppress this behavior.
+
+Currently:
+
+1373 THREAD(cold) = { Fenter,
+1374     Tuinit, Tu0, Tninit, Titod,     /* important initialization! */
+1375     Tlit, coldprompt, Tcount, Ttype, Tcr,
+1376     Tflabort, };                      /* Tabort never exits */
+
+Just change that 'Tflabort' to a simple 'Tabort' and the new behavior ends.
+
+This could be a way to populate 0x10040000 with a program, as the
+system already has what's needed to help populate it (primarily,
+by using the 'reading' word, which accepts 1023 chars, no fewer and
+no more than that, and writes them to SRAM - and returns the address
+where the SRAM buffer lives.
+
+Once the SRAM buffer is populated, buf2flash commits it to QSPI flashROM.
+
+Note that 'reading' supplies the address automatically, on TOS, to
+be (then) utilized by 'buf2flash').
+
+Then, once the flashROM space (at 0x10040000) is populated with the
+source code of a Forth program (in ascii plaintext) if you make no
+errors (when using 'reading' some time in the future, followed by
+'buf2flash' to write the SRAM buffer to QSPI flashROM) .. if you
+make no errors the system can be 'permanently' enabled for 'Tflaccept'
+in 'COLD'.
+
+It is entirely untested what happens if you make an error in the
+proper population of 0x10040000 on-device program source code storage.
+
