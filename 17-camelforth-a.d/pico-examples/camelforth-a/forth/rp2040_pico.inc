@@ -47,10 +47,14 @@
 
 #include "rp2040_pico.h"
 #include "rp2040_pico_getkey_usb.inc"
+#include "rp2040_flashkey.inc"
+
 #include "cut.inc"              // string cutter utility, for long USB printf's
 
 // extern unsigned int getKey(void);       // hardware-independent wrapper
 extern uint8_t getKey(void);       // hardware-independent wrapper
+extern uint8_t getFlKey(void);     // get 'keystroke' from QSPI flashROM RP2040
+
 // extern int _pico_LED();
 
 /*
