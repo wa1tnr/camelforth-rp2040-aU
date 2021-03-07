@@ -1184,9 +1184,10 @@ THREAD(flaccept) = { Fenter, Tover, Tplus, Toneminus, Tover,
 /* 3 */  Tdup, Temit, Tover, Tcstore, Toneplus, Tover, Tumin,
 /* 4 */  Tbranch, OFFSET(-38 /*1*/), /* was -32 */
 /* 5 */  Tdrop, Tnip, Tswap, Tminus, Texit,
-/* 6 */  Tdrop, Tdrop, Tquit };
+/* 6 */  Tdrop, Tdrop, Tdrop, Tdrop, Tquit };
 
 
+// flaccept
 
 
 
