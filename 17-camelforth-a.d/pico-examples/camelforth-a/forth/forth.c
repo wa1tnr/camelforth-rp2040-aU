@@ -995,13 +995,22 @@ THREAD(accept) = { Fenter, Tover, Tplus, Toneminus, Tover,
 /* 4 */  Tbranch, OFFSET(-32 /*1*/),
 /* 5 */  Tdrop, Tnip, Tswap, Tminus, Texit };
 
+extern void * Tabort[];   /* forward reference */
+
 THREAD(flaccept) = { Fenter, Tover, Tplus, Toneminus, Tover,
-/* 1 */  Tflkey, Tdup, Tlit, LIT(NEWLINE), Tnotequal, Tqbranch, OFFSET(27 /*5*/),
+/* 1 */  Tflkey, Tdup, Tlit, LIT(NEWLINE), Tnotequal, Tqbranch, OFFSET(32 /*5*/), /* was 27 */
+
+         Tdup, Tlit, LIT(0x0), Tequal, Tabort,
+
+/* okay so the mechanism is that flabort begins right after boot - when a 0x00 char is
+   encountered in flash, call Tabort (Texit seems subroutine oriented, Tabort seems
+   more do-over oriented. EXPERIMENTAL! */
+
          Tdup, Tlit, LIT(BACKSPACE), Tequal, Tqbranch, OFFSET(12 /*3*/),
          Tdrop, Tlit, LIT(BACKUP), Temit, Toneminus, Ttor, Tover, Trfrom,
          Tumax, Tbranch, OFFSET(8 /*4*/),
 /* 3 */  Tdup, Temit, Tover, Tcstore, Toneplus, Tover, Tumin,
-/* 4 */  Tbranch, OFFSET(-32 /*1*/),
+/* 4 */  Tbranch, OFFSET(-37 /*1*/), /* was -32 */
 /* 5 */  Tdrop, Tnip, Tswap, Tminus, Texit };
 
 THREAD(type) = { Fenter, Tqdup, Tqbranch, OFFSET(12 /*4*/),
@@ -1127,7 +1136,7 @@ THREAD(qnumber) = { Fenter, Tdup, Tzero, Tdup, Trot, Tcount,
  /*3*/  Texit };
 
 // extern const void * Tabort[];   /* forward reference */
-extern void * Tabort[];   /* forward reference */
+extern void * Tflabort[];   /* forward reference */
 
 THREAD(interpret) = { Fenter,   
         Tticksource, Ttwostore, Tzero, Ttoin, Tstore,
@@ -1167,8 +1176,8 @@ THREAD(flquit) = { Fenter, Tl0, Tlp, Tstore,
         Tlit, okprompt, Ticount, Titype,
  /*2*/  Tbranch, OFFSET(-17 /*1*/) };     // never exits
 
-// THREAD(abort) = { Fenter, Ts0, Tspstore, Tquit };
-THREAD(abort) = { Fenter, Ts0, Tspstore, Tflquit };
+THREAD(abort) = { Fenter, Ts0, Tspstore, Tquit };
+THREAD(flabort) = { Fenter, Ts0, Tspstore, Tflquit };
 
 THREAD(qabort) = { Fenter, Trot, Tqbranch, OFFSET(3), Titype, Tabort,
                    Ttwodrop, Texit };
@@ -1333,7 +1342,7 @@ char coldprompt[] = VERS_CFORTH
 THREAD(cold) = { Fenter, 
     Tuinit, Tu0, Tninit, Titod,     /* important initialization! */
     Tlit, coldprompt, Tcount, Ttype, Tcr,
-    Tabort, };                      /* Tabort never exits */
+    Tflabort, };                      /* Tabort never exits */
     
 /*
  * INNER INTERPRETER
