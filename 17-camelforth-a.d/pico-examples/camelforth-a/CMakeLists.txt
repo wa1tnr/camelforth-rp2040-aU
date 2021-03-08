@@ -11,9 +11,9 @@ target_compile_definitions(camelforth-a PRIVATE
 target_link_libraries(camelforth-a forth pico-LED hardware_flash pico_stdlib)
 
 # pico_set_binary_type(camelforth-a copy_to_ram)
-# pico_set_binary_type(camelforth-a copy_to_ram)
+pico_set_binary_type(camelforth-a copy_to_ram)
 # pico_set_binary_type(camelforth-a no_flash)
-pico_set_binary_type(camelforth-a no_flash)
+# pico_set_binary_type(camelforth-a no_flash)
 
 pico_enable_stdio_usb(camelforth-a 1)
 pico_enable_stdio_uart(camelforth-a 1) # was zero

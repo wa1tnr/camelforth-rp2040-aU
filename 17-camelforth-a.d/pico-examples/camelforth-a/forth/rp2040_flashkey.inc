@@ -16,7 +16,7 @@ uint8_t acquire_flash_char() {
     // printf("%02X",  (char_read & 0xff));
     int qq = 0;
     // slow player piano // for (volatile uint32_t i = 0x1FFFFF; i>0; i--) {
-    for (volatile uint32_t i = 0x1FFF; i>0; i--) {
+    for (volatile uint32_t i = 0x1FF; i>0; i--) {
         qq++;
         // statement
     }

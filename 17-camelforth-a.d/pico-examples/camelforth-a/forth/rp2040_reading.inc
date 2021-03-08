@@ -4,7 +4,8 @@
 
 // read keyboard store in ram 1023 bytes plus a terminating NULL '\0' for 1024 byte buffer
 
-#define READING_SIZE 1024
+// #define READING_SIZE 1024
+#define READING_SIZE 4096
 
 char buffer[READING_SIZE];
 
@@ -42,12 +43,17 @@ CODE(reading) {
         ) ||
         (   // list of the out-of-sequence chars permitted
             (ch_test == '\010') || // backspace 0x08
+            (ch_test == '\033') || // escape    0x1B // escape: beneficially premature EOF marker
             (ch_test == '\t') ||   // tab       0x09
             (ch_test == '\n')      // newline   0x0A
         )
        ) { // marker CCEC
+        if (ch_read == '\033') {
+            buffer[bufpos++] = '\0'; // mark eof
+            printf(" ESC! ");
+            return; // does this do harm?
+        }
         buffer[bufpos++] = ch_read;
-
         putch((char) ch_read); // may be OUT OF BAND - no thought put into this
     } // marker CCEC
     
