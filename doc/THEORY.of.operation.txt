@@ -1,0 +1,85 @@
+AUTO-LOADING FORTH source code, on COLD boot.
+
+Mon Mar  8 02:23:22 UTC 2021
+commit 3d55b432ebfef550795e9814487772653369e3b1
+
+0x10040000 used as in SDK examples. 4095 bytes (plus a
+terminating '\0').
+
+ESC ends a 'reading' upload prematurely (and beneficially).
+So no need to fill all 4095 bytes with unwanted keystrokes.
+
+rewind still important - have not addressed when/how to
+automate its obvious use case.
+
+See the source for what it does.
+
+copy_to_ram seems fine so far, in brief testing.
+
+HEX 10040000 erase    .. that will moot the auto-loading
+
+(erases your forth source from QSPI flashROM).
+
+
+PROGRAM FLOW
+
+SPECIAL Read-from-flashROM on COLD boot routine:
+
+COLD calls Tflabort.  Tflabort calls Tflquit.
+
+Tflquit calls Tflaccept.
+
+Tflaccept does this:
+
+ * examines inbound keystroke (faked from flash storage)
+
+ * asks if it is 0x00 or 0xff
+
+ * if it is either of those two, calls Tquit (not Tflquit).
+
+ * if input char is not 0x00 or 0xff, interpret these
+   keystrokes (characters) read in from QSPI flashrom,
+   exactly the same way a keyboard input keystroke
+   would have been (in the original 'accept' word).
+
+
+
+NORMAL keyboard input based Interpreter:
+
+Once normal program flow is re-established, with a call
+to Tquit:
+
+Tquit calls Taccept (rather than Tflaccept) and thus
+  there is no further interaction with the QSPI flashROM.
+
+Tquit is marked by the upstream author as 'never exits'
+
+Tflquit looks very similar to Tquit but for a substitution
+  of what the related 'accept' word looks like.
+
+Initially there was only a single accept word.
+
+It was deemed too difficult a novice project to combine
+all this into a single 'accept' word that does it all.
+
+
+CIRCUMVENTION
+
+If no flashROM related behavior is wanted on a COLD boot,
+simply edit the C source code and point to Tabort, rather
+than to Tflabort, in the definition of the COLD thread.
+
+Presently found at these line numbers (forth.c):
+
+1369 THREAD(cold) = { Fenter,
+1370     Tuinit, Tu0, Tninit, Titod,     /* important initialization! */
+1371     Tlit, coldprompt, Tcount, Ttype, Tcr,
+1372     Tflabort, };                      /* Tabort never exits */
+
+Note that the upstream author ends Tabort, with that comma hanging there.
+
+Or a typo crept in. ;)
+
+On branch buffer-to-flash-c
+
+END.
