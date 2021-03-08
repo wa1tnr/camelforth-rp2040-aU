@@ -974,8 +974,13 @@ THREAD(storecolon) = { Fenter, Ttwo, Tcells, Tnegate, Tiallot,
 /* INPUT/OUTPUT */
 
 THREAD(count) = { Fenter, Tdup, Tcharplus, Tswap, Tcfetch, Texit };
+
+THREAD(flnocr) = { Fenter, Tlit, LIT(0x0d), Tdrop, Tlit, LIT(0x0a), Tdrop,
+                Texit };
+
 THREAD(cr) = { Fenter, Tlit, LIT(0x0d), Temit, Tlit, LIT(0x0a), Temit,
                 Texit };
+
 THREAD(space) = { Fenter, Tlit, LIT(0x20), Temit, Texit };
 THREAD(spaces) = { Fenter, Tdup, Tqbranch, OFFSET(5), Tspace, Toneminus,
                 Tbranch, OFFSET(-6), Tdrop, Texit };
@@ -1208,7 +1213,7 @@ THREAD(flaccept) = { Fenter, Tover, Tplus, Toneminus, Tover,
 THREAD(flquit) = { Fenter, Tl0, Tlp, Tstore,
         Tr0, Trpstore, Tzero, Tstate, Tstore,
  /*1*/  Ttib, Tdup, Ttibsize, Tflaccept, Tspace, Tinterpret,
-        Tcr, Tstate, Tfetch, Tzeroequal, Tqbranch, OFFSET(5 /*2*/),
+        Tflnocr, Tstate, Tfetch, Tzeroequal, Tqbranch, OFFSET(5 /*2*/),
         Tlit, okprompt, Ticount, Tflnotype,
  /*2*/  Tbranch, OFFSET(-17 /*1*/) };     // never exits
 
