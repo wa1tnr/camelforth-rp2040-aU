@@ -1007,6 +1007,14 @@ THREAD(accept) = { Fenter, Tover, Tplus, Toneminus, Tover,
 
 
 
+THREAD(flnotype) = { Fenter, Tqdup, Tqbranch, OFFSET(12 /*4*/),
+         Tover, Tplus, Tswap, Txdo,
+/* 3 */  Ti, Tcfetch, Tdrop, Txloop, OFFSET(-4 /*3*/),
+         Tbranch,  OFFSET(2 /*5*/),
+/* 4 */  Tdrop,
+/* 5 */  Texit };
+
+
 
 THREAD(type) = { Fenter, Tqdup, Tqbranch, OFFSET(12 /*4*/),
          Tover, Tplus, Tswap, Txdo,
@@ -1017,6 +1025,7 @@ THREAD(type) = { Fenter, Tqdup, Tqbranch, OFFSET(12 /*4*/),
 
 #define Ticount Tcount
 #define Titype Ttype
+#define Tiflnotype Tflnotype
 
 /* NUMERIC OUTPUT */
 
@@ -1200,7 +1209,7 @@ THREAD(flquit) = { Fenter, Tl0, Tlp, Tstore,
         Tr0, Trpstore, Tzero, Tstate, Tstore,
  /*1*/  Ttib, Tdup, Ttibsize, Tflaccept, Tspace, Tinterpret,
         Tcr, Tstate, Tfetch, Tzeroequal, Tqbranch, OFFSET(5 /*2*/),
-        Tlit, okprompt, Ticount, Titype,
+        Tlit, okprompt, Ticount, Tflnotype,
  /*2*/  Tbranch, OFFSET(-17 /*1*/) };     // never exits
 
 THREAD(abort) = { Fenter, Ts0, Tspstore, Tquit };
