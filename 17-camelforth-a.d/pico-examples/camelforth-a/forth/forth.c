@@ -1,4 +1,4 @@
-#define DATE_STAMP "Mon Mar  8 02:50:37 UTC 2021"
+#define DATE_STAMP "Mon Mar  8 05:02:09 UTC 2021"
 // old standard width for this field: #define BRANCH_STAMP "erase_sector-a"
 #define BRANCH_STAMP  "main-with-flash-ops-a    __"
 #define COMMIT_STAMP  "a95c740"
@@ -1185,9 +1185,9 @@ THREAD(flaccept) = { Fenter, Tover, Tplus, Toneminus, Tover,
    more do-over oriented. EXPERIMENTAL! */
 
          Tdup, Tlit, LIT(BACKSPACE), Tequal, Tqbranch, OFFSET(12 /*3*/),
-         Tdrop, Tlit, LIT(BACKUP), Temit, Toneminus, Ttor, Tover, Trfrom,
+         Tdrop, Tlit, LIT(BACKUP), Tdrop, Toneminus, Ttor, Tover, Trfrom,
          Tumax, Tbranch, OFFSET(8 /*4*/),
-/* 3 */  Tdup, Temit, Tover, Tcstore, Toneplus, Tover, Tumin,
+/* 3 */  Tdup, Tdrop, Tover, Tcstore, Toneplus, Tover, Tumin,
 /* 4 */  Tbranch, OFFSET(-44 /*1*/), /* was -32 */
 /* 5 */  Tdrop, Tnip, Tswap, Tminus, Texit,
 /* 6 */  Tdrop, Tdrop, Tdrop, Tdrop, Tdrop, Tquit }; // removed a few Tdrops to test different paths with different stack effects
