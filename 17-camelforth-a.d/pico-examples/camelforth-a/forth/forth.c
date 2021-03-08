@@ -1,4 +1,4 @@
-#define DATE_STAMP "Mon Mar  8 05:02:09 UTC 2021"
+#define DATE_STAMP "Mon Mar  8 05:20:09 UTC 2021"
 // old standard width for this field: #define BRANCH_STAMP "erase_sector-a"
 #define BRANCH_STAMP  "main-with-flash-ops-a    __"
 #define COMMIT_STAMP  "a95c740"
@@ -982,6 +982,8 @@ THREAD(cr) = { Fenter, Tlit, LIT(0x0d), Temit, Tlit, LIT(0x0a), Temit,
                 Texit };
 
 THREAD(space) = { Fenter, Tlit, LIT(0x20), Temit, Texit };
+THREAD(flnospace) = { Fenter, Tlit, LIT(0x20), Tdrop, Texit };
+
 THREAD(spaces) = { Fenter, Tdup, Tqbranch, OFFSET(5), Tspace, Toneminus,
                 Tbranch, OFFSET(-6), Tdrop, Texit };
 
@@ -1212,7 +1214,7 @@ THREAD(flaccept) = { Fenter, Tover, Tplus, Toneminus, Tover,
 
 THREAD(flquit) = { Fenter, Tl0, Tlp, Tstore,
         Tr0, Trpstore, Tzero, Tstate, Tstore,
- /*1*/  Ttib, Tdup, Ttibsize, Tflaccept, Tspace, Tinterpret,
+ /*1*/  Ttib, Tdup, Ttibsize, Tflaccept, Tflnospace, Tinterpret,
         Tflnocr, Tstate, Tfetch, Tzeroequal, Tqbranch, OFFSET(5 /*2*/),
         Tlit, okprompt, Ticount, Tflnotype,
  /*2*/  Tbranch, OFFSET(-17 /*1*/) };     // never exits
