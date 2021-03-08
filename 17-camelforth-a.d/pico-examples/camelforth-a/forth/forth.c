@@ -1,12 +1,12 @@
-#define DATE_STAMP "Sun Mar  7 21:08:49 UTC 2021"
+#define DATE_STAMP "Mon Mar  8 01:53:54 UTC 2021"
 // old standard width for this field: #define BRANCH_STAMP "erase_sector-a"
-#define BRANCH_STAMP  "buffer-to-flash-c        __"
-#define COMMIT_STAMP  "2fe324c"
+#define BRANCH_STAMP  "buffer-to-flash-c w/0xff __"
+#define COMMIT_STAMP  "97b2675"
 #define FEATURE_STAMP "+rewind +flaccept +flwrite   "
 // #define MODE_STAMP "copy_to_ram"
-// #define MODE_STAMP "copy_to_ram"
+#define MODE_STAMP "copy_to_ram"
 // #define MODE_STAMP "no_flash   "
-#define MODE_STAMP "no_flash   "
+// #define MODE_STAMP "no_flash   "
 #define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - " DATE_STAMP "  ");
 // old count reasonable branch stamp: #define DOFILLS_datus ("\200\n\n +flwrite +erase " DATE_STAMP " \n branch " BRANCH_STAMP " " COMMIT_STAMP " UNDER TEST    \n " MODE_STAMP " mode\n\n            ");
 #define DOFILLS_datus ("\215\n\n " FEATURE_STAMP DATE_STAMP " \n branch " BRANCH_STAMP " " COMMIT_STAMP " UNDER TEST   \n " MODE_STAMP " mode\n\n");
@@ -1169,14 +1169,16 @@ THREAD(quit) = { Fenter, Tl0, Tlp, Tstore,
 // target zone
 
 THREAD(flaccept) = { Fenter, Tover, Tplus, Toneminus, Tover,
-/* 1 */  Tflkey, Tdup, Tlit, LIT(NEWLINE), Tnotequal, Tqbranch, OFFSET(33 /*5*/), /* was 27 */
+/* 1 */  Tflkey, Tdup, Tlit, LIT(NEWLINE), Tnotequal, Tqbranch, OFFSET(39 /*5*/), /* was 33 */
 
          Tdup,
          Tlit,
          LIT(0x0),
          Tnotequal,
          Tqbranch,
-         OFFSET(32 /*6*/),
+         OFFSET(38 /*6*/), /* was 32 */
+
+         Tdup, Tlit, LIT(0xFF), Tnotequal, Tqbranch, OFFSET(32 /*6*/),
 
 /* okay so the mechanism is that flabort begins right after boot - when a 0x00 char is
    encountered in flash call Tabort (Texit seems subroutine oriented Tabort seems
@@ -1186,18 +1188,12 @@ THREAD(flaccept) = { Fenter, Tover, Tplus, Toneminus, Tover,
          Tdrop, Tlit, LIT(BACKUP), Temit, Toneminus, Ttor, Tover, Trfrom,
          Tumax, Tbranch, OFFSET(8 /*4*/),
 /* 3 */  Tdup, Temit, Tover, Tcstore, Toneplus, Tover, Tumin,
-/* 4 */  Tbranch, OFFSET(-38 /*1*/), /* was -32 */
+/* 4 */  Tbranch, OFFSET(-44 /*1*/), /* was -32 */
 /* 5 */  Tdrop, Tnip, Tswap, Tminus, Texit,
-/* 6 */  Tdrop, Tdrop, Tdrop, Tdrop, Tquit };
+/* 6 */  Tdrop, Tdrop, Tdrop, Tdrop, Tdrop, Tquit }; // removed a few Tdrops to test different paths with different stack effects
 
 
 // flaccept
-
-
-
-
-
-
 
 
 THREAD(flquit) = { Fenter, Tl0, Tlp, Tstore,
