@@ -87,7 +87,7 @@ void flash_write_buffer(void) {
 
     uint8_t program_data[FLASH_PAGE_SIZE];
 
-    for (uint8_t offset_b = 0; offset_b <4; offset_b++) {
+    for (uint8_t offset_b = 0; offset_b <16; offset_b++) { // was 4 now 16 4 worked out well
 
         printf(" DEBUG: assume offset_b: %d\n", offset_b);
 
