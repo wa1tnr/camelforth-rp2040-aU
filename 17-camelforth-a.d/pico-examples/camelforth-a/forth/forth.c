@@ -1,15 +1,15 @@
-#define DATE_STAMP "Mon Mar  8 02:08:05 UTC 2021"
+#define DATE_STAMP "Mon Mar  8 02:50:37 UTC 2021"
 // old standard width for this field: #define BRANCH_STAMP "erase_sector-a"
-#define BRANCH_STAMP  "buffer-to-flash-c w/0xff __"
-#define COMMIT_STAMP  "e6d49df"
-#define FEATURE_STAMP "+rewind +flaccept +flwrite   "
+#define BRANCH_STAMP  "main-with-flash-ops-a    __"
+#define COMMIT_STAMP  "a95c740"
+#define FEATURE_STAMP "+auto_load +rewind +flaccept         "
 // #define MODE_STAMP "copy_to_ram"
 #define MODE_STAMP "copy_to_ram"
 // #define MODE_STAMP "no_flash   "
 // #define MODE_STAMP "no_flash   "
 #define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - " DATE_STAMP "  ");
 // old count reasonable branch stamp: #define DOFILLS_datus ("\200\n\n +flwrite +erase " DATE_STAMP " \n branch " BRANCH_STAMP " " COMMIT_STAMP " UNDER TEST    \n " MODE_STAMP " mode\n\n            ");
-#define DOFILLS_datus ("\215\n\n " FEATURE_STAMP DATE_STAMP " \n branch " BRANCH_STAMP " " COMMIT_STAMP " UNDER TEST   \n " MODE_STAMP " mode\n\n");
+#define DOFILLS_datus ("\225\n\n " FEATURE_STAMP DATE_STAMP " \n branch " BRANCH_STAMP " " COMMIT_STAMP " UNDER TEST   \n " MODE_STAMP " mode\n\n");
 // special attempt: make some pointerish things more robust by superstitiously using 'volatile' all over the place ;)
 // surprisingly, all these changes in this commit do compile cleanly.
 /****h* camelforth/forth.c
