@@ -1,5 +1,13 @@
 # camelforth-rp2040-aU   UNSTABLE   0.1.4-pre-alpha   Tue Feb 16 15:34:07 UTC 2021
 
+# NEWS
+
+Ongoing development is here:
+
+  https://github.com/wa1tnr/camelforth-rp2040-b-MS-U
+
+# HELLO
+
 CamelForth in C, by Dr. Brad Rodriguez
 
 UNSTABLE version
